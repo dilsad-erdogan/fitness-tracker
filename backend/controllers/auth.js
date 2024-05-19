@@ -3,10 +3,28 @@ const User = require('../models/User');
 const sendToken = require('../utils/sendToken');
 const sendEmail = require('../utils/sendEmail');
 const bcrypt = require('bcrypt');
+const rateLimit = require('express-rate-limit');
 
 const generate2FACode = () => {
     return Math.floor(100000 + Math.random() * 900000).toString(); // 6 haneli bir kod üretir
 };
+
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: 'Too many login attempts from this IP, please try again after 15 minutes',
+});
+
+const accountLockout = async (req, res, next) => {
+    const { u_email } = req.body;
+    const user = await User.findOne({ u_email });
+
+    if(user && user.loginAttempts >= 5 && user.lockUntil > Date.now()) {
+        return res.status(403).json({ success: false, error: 'Your account is locked. Please try again later.' });
+    }
+
+    next();
+}
 
 const register = catchAsyncError(async (req, res) => {
     const { u_role, u_name, u_email, u_password } = req.body;
@@ -40,7 +58,18 @@ const loginOrigin = catchAsyncError(async (req, res) => {
 
         const isPasswordMatched = await bcrypt.compare(u_password, user.u_password);
         if (!isPasswordMatched) {
+            user.loginAttempts += 1;
+            if (user.loginAttempts >= 5) {
+                user.lockUntil = Date.now() + 15 * 60 * 1000; // 15 dakika kilitle
+            }
+            await user.save();
             return res.status(400).json({ success: false, error: 'Invalid email or password.' });
+        }
+
+        if(user.loginAttempts > 0) {
+            user.loginAttempts = 0;
+            user.lockUntil = undefined;
+            await user.save();
         }
 
         sendToken(user, 201, res, { message: 'Login successful' });
@@ -66,6 +95,11 @@ const login2FA = catchAsyncError(async (req, res) => {
 
         const isPasswordMatched = await bcrypt.compare(u_password, user.u_password);
         if (!isPasswordMatched) {
+            user.loginAttempts += 1;
+            if (user.loginAttempts >= 5) {
+                user.lockUntil = Date.now() + 15 * 60 * 1000; // 15 dakika kilitle
+            }
+            await user.save();
             return res.status(400).json({ success: false, error: 'Invalid email or password.' });
         }
 
@@ -108,6 +142,12 @@ const verify2FA = catchAsyncError(async (req, res) => {
         user.twoFAExpire = undefined;
         await user.save();
 
+        if(user.loginAttempts > 0) {
+            user.loginAttempts = 0;
+            user.lockUntil = undefined;
+            await user.save();
+        }
+
         sendToken(user, 200, res, { message: 'Login successful' });
     } catch (error) {
         console.error('Error during 2FA verification:', error);
@@ -149,8 +189,8 @@ const forgotPassword = catchAsyncError(async (req, res) => {
 
 module.exports = {
     register,
-    loginOrigin,
+    loginOrigin: [loginLimiter, accountLockout, loginOrigin],
     login2FA,
-    verify2FA,
+    verify2FA: [loginLimiter, accountLockout, verify2FA],
     forgotPassword
 };

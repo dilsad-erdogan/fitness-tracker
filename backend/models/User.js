@@ -23,10 +23,21 @@ const userSchema = new mongoose.Schema({
     twoFACode: {
         type: String
     },
+    twoFAExpire: {
+        type: Date
+    },
     resetPasswordToken: {
         type: String
     },
     resetPasswordExpire: {
+        type: Date
+    },
+    loginAttempts: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    lockUntil: {
         type: Date
     },
     date_time: {
@@ -34,7 +45,8 @@ const userSchema = new mongoose.Schema({
         default: Date.now
     },
     is_active: {
-        type: Boolean
+        type: Boolean,
+        default: true
     }
 }, { timestamps: true });
 
@@ -53,6 +65,11 @@ userSchema.methods.getResetPasswordToken = function () {
     this.resetPasswordExpire = Date.now() + 30 * 60 * 1000; // Token valid for 30 minutes
 
     return resetToken;
+};
+
+// Check if account is currently locked
+userSchema.methods.isLocked = function () {
+    return this.lockUntil && this.lockUntil > Date.now();
 };
 
 const User = mongoose.model("User", userSchema);
