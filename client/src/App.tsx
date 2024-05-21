@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import authService from './services/auth';
 
 function App() {
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+
+  const submit = async () => {
+    try{
+      const userData = { u_email: email, u_password: pass};
+      const response = await authService.login(userData);
+      console.log(response.message);
+    } catch (error){
+      console.error(error);
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" placeholder="Email" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+      <input type="text" placeholder="Password" value={pass} onChange={(e) => {setPass(e.target.value)}}></input>
+      <button onClick={submit}>Submit</button>
     </div>
   );
 }
