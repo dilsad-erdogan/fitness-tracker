@@ -1,0 +1,595 @@
+/************************************************************************************************
+LOGIN
+
+  const loginOrigin = async () => {
+    try{
+      const userData = { u_email: email, u_password: pass};
+      const response = await authService.login(userData);
+      console.log(response.message);
+    } catch (error){
+      console.error(error);
+    }
+  }
+  const loginCode = async () => {
+    try{
+      const userData = { u_email: email, u_password: pass };
+      const response = await authService.login2FA(userData);
+      console.log(response.message, " şifreyi girin tekrar deneyin.");
+    } catch (error){
+      console.error(error);
+    }
+  }
+  const loginCoding = async () => {
+    try{
+      const userData = { u_email: email, twoFACode: code };
+      const response = await authService.verify2FA(userData);
+      console.log(response.message);
+    } catch (error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="Email" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+    <input type="text" placeholder="Password" value={pass} onChange={(e) => {setPass(e.target.value)}}></input>
+    <input type="text" placeholder="Code" value={code} onChange={(e) => {setCode(e.target.value)}}></input>
+    <button onClick={loginOrigin}>Login Origin</button>
+    <button onClick={loginCode}>Login Code</button>
+    <button onClick={loginCoding}>Login Coding</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+REGISTER
+
+  const register = async () => {
+    try{
+      const userData = { u_role: role, u_name: name, u_email: email, u_password: pass };
+      const response = await authService.register(userData);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="Role" value={role} onChange={(e) => {setRole(e.target.value)}}></input>
+    <input type="text" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+    <input type="text" placeholder="Email" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+    <input type="text" placeholder="Password" value={pass} onChange={(e) => {setPass(e.target.value)}}></input>
+    <button onClick={register}>Register</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+HEIGHT WEIGHT
+
+  const getHW = async () => {
+    try{
+      const data = await hwService.get();
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const setHW = async () => {
+    try{
+      const data = { hw_uid: id, height: height, weight: weight };
+      const response = await hwService.add(data);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateH = async () => {
+    try {
+      const response = await hwService.updateHeight(id, { height: height });
+      console.log(response.message);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const updateW = async () => {
+    try{
+      const response = await hwService.updateWeight(id, { weight: weight });
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const deleteHW = async () => {
+    try{
+      const response = await hwService.deleted(id);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const byIdHW = async () => {
+    try{
+      const response = await hwService.byId(id);
+      console.log(response.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="User Id" value={id} onChange={(e) => {setId(e.target.value)}}></input>
+    <input type="text" placeholder="Height" value={height} onChange={(e) => {setHeight(e.target.value)}}></input>
+    <input type="text" placeholder="Weight" value={weight} onChange={(e) => {setWeight(e.target.value)}}></input>
+    <button onClick={getHW}>Get HW</button>
+    <button onClick={setHW}>Set HW</button>
+    <button onClick={updateH}>Update H</button>
+    <button onClick={updateW}>Update W</button>
+    <button onClick={deleteHW}>Delete HW</button>
+    <button onClick={byIdHW}>By id HW</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+MOVEMENT
+
+  const getM = async() => {
+    try{
+      const data = await mService.get();
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const setM = async() => {
+    try{
+      const data = { m_tid: email, m_name: name, m_description: desc, m_photo: photo, m_video: video };
+      const response = await mService.add(data);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateMD = async() => {
+    try{
+      const data = await mService.updateDescription(id, { m_description: desc });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateMP = async() => {
+    try{
+      const data = await mService.updatePhoto(id, { m_photo: photo });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateMV = async() => {
+    try{
+      const data = await mService.updateVideo(id, { m_video: video });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const deleteM = async() => {
+    try{
+      const data = await mService.deleted(id);
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const byIdM = async() => {
+    try{
+      const data = await mService.byId(id);
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="M Id" value={id} onChange={(e) => {setId(e.target.value)}}></input>
+    <input type="text" placeholder="Title Id" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+    <input type="text" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+    <input type="text" placeholder="Description" value={desc} onChange={(e) => {setDesc(e.target.value)}}></input>
+    <input type="text" placeholder="Photo" value={photo} onChange={(e) => {setPhoto(e.target.value)}}></input>
+    <input type="text" placeholder="Video" value={video} onChange={(e) => {setVideo(e.target.value)}}></input>
+    <button onClick={getM}>Get M</button>
+    <button onClick={setM}>Set M</button>
+    <button onClick={updateMD}>Update MD</button>
+    <button onClick={updateMP}>Update MP</button>
+    <button onClick={updateMV}>Update MV</button>
+    <button onClick={deleteM}>Delete M</button>
+    <button onClick={byIdM}>ById M</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+MOVEMENT TITLE
+
+  const getMT = async() => {
+    try{
+      const data = await mtService.get();
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const setMT = async() => {
+    try{
+      const data = { t_name: name };
+      const response = await mtService.add(data);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateMT = async() => {
+    try{
+      const data = await mtService.update(id, { t_name: name });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const deleteMT = async() => {
+    try{
+      const data = await mtService.deleted(id);
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const byIdMT = async() => {
+    try{
+      const data = await mtService.byId(id);
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="MT Id" value={id} onChange={(e) => {setId(e.target.value)}}></input>
+    <input type="text" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+    <button onClick={getMT}>Get MT</button>
+    <button onClick={setMT}>Set MT</button>
+    <button onClick={updateMT}>Update MT</button>
+    <button onClick={deleteMT}>Delete MT</button>
+    <button onClick={byIdMT}>ById Mt</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+PROGRAM
+
+  const getP = async() => {
+    try{
+      const data = await pservice.get();
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const setP = async() => {
+    try{
+      const data = { p_name: name, p_description: desc, duration: duration, time: time };
+      const response = await pservice.add(data);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updatePN = async() => {
+    try{
+      const data = await pservice.updateName(id, { p_name: name });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updatePD = async() => {
+    try{
+      const data = await pservice.updateDescription(id, { p_description: desc });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updatePDu = async() => {
+    try{
+      const data = await pservice.updateDuration(id, { duration: duration});
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updatePT = async() => {
+    try{
+      const data = await pservice.updateTime(id, { time: time });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const deleteP = async() => {
+    try{
+      const data = await pservice.deleted(id);
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const byIdP = async() => {
+    try{
+      const data = await pservice.byId(id);
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="Program Id" value={id} onChange={(e) => {setId(e.target.value)}}></input>
+    <input type="text" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+    <input type="text" placeholder="Description" value={desc} onChange={(e) => {setDesc(e.target.value)}}></input>
+    <input type="text" placeholder="Duration" value={duration} onChange={(e) => {setDuration(e.target.value)}}></input>
+    <input type="text" placeholder="Time" value={time} onChange={(e) => {setTime(e.target.value)}}></input>
+    <button onClick={getP}>Get P</button>
+    <button onClick={setP}>Set P</button>
+    <button onClick={updatePN}>Update PN</button>
+    <button onClick={updatePD}>Update PD</button>
+    <button onClick={updatePDu}>Update Pu</button>
+    <button onClick={updatePT}>Update PT</button>
+    <button onClick={deleteP}>Delete P</button>
+    <button onClick={byIdP}>ById P</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+SET
+
+  const getS = async() => {
+    try{
+      const data = await sService.get();
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const setS = async() => {
+    try{
+      const data = { s_pid: name, s_mid: email };
+      const response = await sService.add(data);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const deleteS = async() => {
+    try{
+      const data = await sService.deleted(id);
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const byIdS = async() => {
+    try{
+      const data = await sService.byId(id);
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="S Id" value={id} onChange={(e) => {setId(e.target.value)}}></input>
+    <input type="text" placeholder="P Id" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+    <input type="text" placeholder="M ID" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+    <button onClick={getS}>Get S</button>
+    <button onClick={setS}>Set S</button>
+    <button onClick={deleteS}>Delete S</button>
+    <button onClick={byIdS}>ById S</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+USER
+
+  const getU = async() => {
+    try{
+      const data = await uService.get();
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateUN = async() => {
+    try{
+      const data = await uService.updateName(id, { u_name: name });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateUE = async() => {
+    try{
+      const data = await uService.updateEmail(id, { u_email: email });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateUP = async() => {
+    try{
+      const data = await uService.updatePassword(id, { u_password: pass });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const deleteU = async() => {
+    try{
+      const data = await uService.deleted(id);
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const byIdU = async() => {
+    try{
+      const data = await uService.byId(id);
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="User Id" value={id} onChange={(e) => {setId(e.target.value)}}></input>
+    <input type="text" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+    <input type="text" placeholder="Email" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+    <input type="text" placeholder="Password" value={pass} onChange={(e) => {setPass(e.target.value)}}></input>
+    <button onClick={getU}>Get U</button>
+    <button onClick={updateUN}>Update UN</button>
+    <button onClick={updateUE}>Update UE</button>
+    <button onClick={updateUP}>Update UP</button>
+    <button onClick={deleteU}>Delete U</button>
+    <button onClick={byIdU}>ById U</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+USER PROGRAM
+
+  const getUP = async() => {
+    try{
+      const data = await upService.get();
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const setUP = async() => {
+    try{
+      const data = { up_uid: email, up_name: name, up_description: desc, duration: duration, time: time };
+      const response = await upService.add(data);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateUPN = async() => {
+    try{
+      const data = await upService.updateName(id, { up_name: name });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateUPD = async() => {
+    try{
+      const data = await upService.updateDescription(id, { up_description: desc });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateUPDu = async() => {
+    try{
+      const data = await upService.updateDuration(id, { duration: duration });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateUPT = async() => {
+    try{
+      const data = await upService.updateTime(id, { time: time });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const deleteUP = async() => {
+    try{
+      const data = await upService.deleted(id);
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const byIdUP = async() => {
+    try{
+      const data = await upService.byId(id);
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="UP Id" value={id} onChange={(e) => {setId(e.target.value)}}></input>
+    <input type="text" placeholder="U Id" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+    <input type="text" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+    <input type="text" placeholder="Description" value={desc} onChange={(e) => {setDesc(e.target.value)}}></input>
+    <input type="text" placeholder="Duration" value={duration} onChange={(e) => {setDuration(e.target.value)}}></input>
+    <input type="text" placeholder="Time" value={time} onChange={(e) => {setTime(e.target.value)}}></input>
+    <button onClick={getUP}>Get P</button>
+    <button onClick={setUP}>Set P</button>
+    <button onClick={updateUPN}>Update PN</button>
+    <button onClick={updateUPD}>Update PD</button>
+    <button onClick={updateUPDu}>Update Pu</button>
+    <button onClick={updateUPT}>Update PT</button>
+    <button onClick={deleteUP}>Delete P</button>
+    <button onClick={byIdUP}>ById P</button>
+
+************************************************************************************************/
+
+/************************************************************************************************
+USER ROLE
+
+  const getUR = async() => {
+    try{
+      const data = await urService.get();
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const setUR = async() => {
+    try{
+      const data = { r_name: name };
+      const response = await urService.add(data);
+      console.log(response.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateUR = async() => {
+    try{
+      const data = await urService.update(id, { r_name: name });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const deleteUR = async() => {
+    try{
+      const data = await urService.deleted(id);
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const byIdUR = async() => {
+    try{
+      const data = await urService.byId(id);
+      console.log(data.data);
+    } catch(error){
+      console.error(error);
+    }
+  }
+
+    <input type="text" placeholder="UR Id" value={id} onChange={(e) => {setId(e.target.value)}}></input>
+    <input type="text" placeholder="Name" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+    <button onClick={getUR}>Get MT</button>
+    <button onClick={setUR}>Set MT</button>
+    <button onClick={updateUR}>Update MT</button>
+    <button onClick={deleteUR}>Delete MT</button>
+    <button onClick={byIdUR}>ById Mt</button>
+
+************************************************************************************************/
