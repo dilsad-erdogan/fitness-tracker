@@ -23,7 +23,7 @@ const add = async (urData) => {
 
 const update = async (id, urData) => {
     try{
-        const response = await axios.put(`${UR}/updateHeight/${id}`, urData);
+        const response = await axios.put(`${UR}/update/${id}`, urData);
         return response.data;
     } catch (error){
         console.error('Error updating user role:', error);
