@@ -63,7 +63,7 @@ const byId = async (id) => {
     }
 };
 
-const hwServices = {
+const uServices = {
     get,
     updateName,
     updateEmail,
@@ -72,4 +72,4 @@ const hwServices = {
     byId
 };
 
-export default hwServices;
+export default uServices;
