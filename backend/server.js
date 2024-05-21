@@ -15,14 +15,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 app.use('/auth', require('./routes/auth'));
-app.use('/userRole', require('./routes/userRole'));
-app.use('/movementTitle', require('./routes/movementTitle'));
+app.use('/heightWeight', require('./routes/heightWeight'));
 app.use('/movement', require('./routes/movement'));
+app.use('/movementTitle', require('./routes/movementTitle'));
 app.use('/program', require('./routes/program'));
 app.use('/set', require('./routes/set'));
 app.use('/user', require('./routes/user'));
 app.use('/userProgram', require('./routes/userProgram'));
-app.use('/heightWeight', require('./routes/heightWeight'));
+app.use('/userRole', require('./routes/userRole'));
 
 app.get('/', (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
