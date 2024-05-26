@@ -1,7 +1,33 @@
+import { useState } from 'react';
 import LOGIN_IMAGE from '../assets/fitness6.png';
 import GOOGLE_ICON from '../assets/google.png';
+import { Link } from 'react-router-dom';
+import authService from '../services/auth';
 
-const LoginForm: React.FC = () => {
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = async () => {
+    console.log("Email: ", email);
+    console.log("Password: ", password);
+    try{
+      const userData = { u_email: email, u_password: password};
+      const response = await authService.login(userData);
+      console.log(response.message);
+    } catch (error){
+      alert('Email is not registered, please register.');
+    }
+  }
+
   return (
     <div className='w-full h-screen flex items-start bg-[#f5f5f5]'>
       <div className='relative w-1/2 h-full flex flex-col'>
@@ -9,7 +35,7 @@ const LoginForm: React.FC = () => {
       </div>
 
       <div className='w-1/2 h-full bg-[#f5f5f5] flex flex-col p-20 justify-between'>
-        <h1 className='text-xl text-[#060606] font-semibold'>Interactive Brand</h1>
+        <h1 className='text-xl text-[#060606] font-semibold'>Fitness Tracker</h1>
 
         <div className='w-full flex flex-col max-w-[500px]'>
           <div className='w-full flex flex-col mb-2'>
@@ -18,8 +44,8 @@ const LoginForm: React.FC = () => {
           </div>
 
           <div className='w-full flex flex-col'>
-            <input className='w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none' type='email' placeholder='Email'></input>
-            <input className='w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none' type='password' placeholder='Password'></input>
+            <input className='w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none' type='email' placeholder='Email' value={email} onChange={handleEmailChange} />
+            <input className='w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none' type='password' placeholder='Password' value={password} onChange={handlePasswordChange} />
           </div>
 
           <div className='w-full flex items-center justify-between'>
@@ -32,8 +58,7 @@ const LoginForm: React.FC = () => {
           </div>
 
           <div className='w-full flex flex-col my-4'>
-            <button className='w-full text-white my-2 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center'>Login</button>
-            <button className='w-full text-[#060606] my-2 font-semibold bg-white border border-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>Register</button>
+            <button className='w-full text-white my-2 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center' onClick={handleSubmit}>Login</button>
           </div>
 
           <div className='w-full flex items-center justify-center relative py-2'>
@@ -43,12 +68,13 @@ const LoginForm: React.FC = () => {
 
           <div className='w-full text-[#060606] my-2 font-semibold bg-white border border-black/40 rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
             <img src={GOOGLE_ICON} className='h-6 mr-2'></img>
-            Sign in with Google
+          Sign in with Google
           </div>
         </div>
 
-        <div className='w-full flex items-center justify-center'>
-          <p className='text-sm font-normal text-[#060606]'>Dont have a account? <span className='font-semibold underline underline-offset-2 cursor-pointer'>Sign up</span></p>
+        <div className='w-full flex flex-col items-center justify-center'>
+          <p className='text-sm font-normal text-[#060606]'>Do you want 2FA login? <Link to="/2faLogin" className='font-semibold underline underline-offset-2 cursor-pointer'>2FA Login</Link></p>
+          <p className='text-sm font-normal text-[#060606]'>Dont have a account? <Link to="/register" className='font-semibold underline underline-offset-2 cursor-pointer'>Sign up</Link></p>
         </div>
       </div>
     </div>
