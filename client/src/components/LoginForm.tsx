@@ -1,10 +1,5 @@
-import LOGIN_IMAGE from '../assets/fitness1.png';
-
-const colors = {
-  primary: "#060606",
-  background: "#E0E0E0",
-  disabled: "#D9D9D9"
-};
+import LOGIN_IMAGE from '../assets/fitness6.png';
+import GOOGLE_ICON from '../assets/google.png';
 
 const LoginForm: React.FC = () => {
   return (
@@ -37,15 +32,23 @@ const LoginForm: React.FC = () => {
           </div>
 
           <div className='w-full flex flex-col my-4'>
-            <button className='w-full text-white my-2 bg-[#060606] rounded-md p-4 text-center flex items-center justify-center'>Login</button>
-            <button className='w-full text-[#060606] my-2 bg-white border-2 border-black rounded-md p-4 text-center flex items-center justify-center'>Register</button>
+            <button className='w-full text-white my-2 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center'>Login</button>
+            <button className='w-full text-[#060606] my-2 font-semibold bg-white border border-black rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>Register</button>
+          </div>
+
+          <div className='w-full flex items-center justify-center relative py-2'>
+            <div className='w-full h-[1px] bg-black'></div>
+            <p className='text-lg absolute text-black/80 bg-[#f5f5f5]'>or</p>
+          </div>
+
+          <div className='w-full text-[#060606] my-2 font-semibold bg-white border border-black/40 rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
+            <img src={GOOGLE_ICON} className='h-6 mr-2'></img>
+            Sign in with Google
           </div>
         </div>
 
-        <div></div>
-
         <div className='w-full flex items-center justify-center'>
-          <p className='text-sm font-normal text-[#060606]'>Dont have a account? <span className='font-semibold underline underline-offset-2 cursor-pointer'>Sign up for free</span></p>
+          <p className='text-sm font-normal text-[#060606]'>Dont have a account? <span className='font-semibold underline underline-offset-2 cursor-pointer'>Sign up</span></p>
         </div>
       </div>
     </div>
