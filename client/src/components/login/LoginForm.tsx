@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import LOGIN_IMAGE from '../assets/fitness6.png';
-import GOOGLE_ICON from '../assets/google.png';
+import LOGIN_IMAGE from '../../assets/fitness6.png';
+import GOOGLE_ICON from '../../assets/google.png';
 import { Link } from 'react-router-dom';
 import authService from '../../services/auth';
+import { useNavigate } from 'react-router-dom'; 
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -17,16 +20,25 @@ const LoginForm = () => {
   };
 
   const handleSubmit = async () => {
-    console.log("Email: ", email);
-    console.log("Password: ", password);
-    try{
-      const userData = { u_email: email, u_password: password};
-      const response = await authService.login(userData);
-      console.log(response.message);
-    } catch (error){
-      alert('Email is not registered, please register.');
+    try {
+        const userData = { u_email: email, u_password: password };
+        const response = await authService.login(userData);
+
+        localStorage.setItem('token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+
+        if (response.user.u_role === "66536ca7cc843b0a8ebfb8d1") {
+            navigate('/user');
+        } else if (response.user.u_role === "6655bdfb4b1d1a8b2cb12919") {
+            navigate('/admin');
+        } else {
+            alert('Please contact the official.');
+        }
+    } catch (error) {
+        setErrorMessage('Invalid email or password');
+        console.error(error);
     }
-  }
+};
 
   return (
     <div className='w-full h-screen flex items-start bg-[#f5f5f5]'>
@@ -56,6 +68,8 @@ const LoginForm = () => {
 
             <p className='text-sm font-medium whitespace-nowrap cursor-pointer underline underline-offset-2'>Forgot Password?</p>
           </div>
+
+          {errorMessage && <p className='text-red-500'>{errorMessage}</p>}
 
           <div className='w-full flex flex-col my-4'>
             <button className='w-full text-white my-2 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center' onClick={handleSubmit}>Login</button>
