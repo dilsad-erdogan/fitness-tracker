@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import LOGIN_IMAGE from '../assets/fitness6.png';
 import { Link } from 'react-router-dom';
-import authService from '../services/auth';
+import authService from '../../services/auth';
 import { useNavigate } from 'react-router-dom'; 
 
 const RegisterForm = () => {

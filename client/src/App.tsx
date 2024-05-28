@@ -1,6 +1,6 @@
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
-import FALoginForm from './components/2FALoginForm';
+import LoginForm from './components/login/LoginForm';
+import RegisterForm from './components/register/RegisterForm';
+import FALoginForm from './components/login/2FALoginForm';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 const App = () => {
