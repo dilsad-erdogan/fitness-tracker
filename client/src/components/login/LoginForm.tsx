@@ -1,15 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import LOGIN_IMAGE from '../../assets/fitness6.png';
 import GOOGLE_ICON from '../../assets/google.png';
 import { Link } from 'react-router-dom';
 import authService from '../../services/auth';
 import { useNavigate } from 'react-router-dom'; 
 
+const useTokenExpiration = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkTokenExpiration = () => {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+
+      const decodedToken = JSON.parse(atob(token.split('.')[1]));
+      const currentTime = Date.now() / 1000;
+
+      if (decodedToken.exp < currentTime) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+      }
+    };
+
+    const interval = setInterval(checkTokenExpiration, 60000); // Her dakika kontrol et
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [navigate]);
+};
+
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
+
+  useTokenExpiration(); // Token süresini kontrol eden hook'u çağır
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
