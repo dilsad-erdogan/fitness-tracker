@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import LOGIN_IMAGE from '../../assets/fitness6.png';
 import GOOGLE_ICON from '../../assets/google.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import authService from '../../services/auth';
-import { useNavigate } from 'react-router-dom'; 
 
 const useTokenExpiration = () => {
   const navigate = useNavigate();
@@ -46,24 +45,24 @@ const LoginForm = () => {
 
   const handleSubmit = async () => {
     try {
-        const userData = { u_email: email, u_password: password };
-        const response = await authService.login(userData);
+      const userData = { u_email: email, u_password: password };
+      const response = await authService.login(userData);
 
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+      localStorage.setItem('token', response.token);
+      localStorage.setItem('user', JSON.stringify(response.user));
 
-        if (response.user.u_role === "66536ca7cc843b0a8ebfb8d1") {
-            navigate('/user');
-        } else if (response.user.u_role === "6655bdfb4b1d1a8b2cb12919") {
-            navigate('/admin');
-        } else {
-            alert('Please contact the official.');
-        }
+      if (response.user.u_role === "66536ca7cc843b0a8ebfb8d1") {
+        navigate('/user');
+      } else if (response.user.u_role === "6655bdfb4b1d1a8b2cb12919") {
+        navigate('/admin');
+      } else {
+        alert('Please contact the official.');
+      }
     } catch (error) {
-        setErrorMessage('Invalid email or password');
-        console.error(error);
+      setErrorMessage('Invalid email or password');
+      console.error(error);
     }
-};
+  };
 
   return (
     <div className='w-full h-screen flex items-start bg-[#f5f5f5]'>
@@ -107,7 +106,7 @@ const LoginForm = () => {
 
           <div className='w-full text-[#060606] my-2 font-semibold bg-white border border-black/40 rounded-md p-4 text-center flex items-center justify-center cursor-pointer'>
             <img src={GOOGLE_ICON} className='h-6 mr-2'></img>
-          Sign in with Google
+            Sign in with Google
           </div>
         </div>
 
