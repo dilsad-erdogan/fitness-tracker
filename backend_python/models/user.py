@@ -1,38 +1,51 @@
-from pymongo import MongoClient
-from flask_bcrypt import Bcrypt
-from bson.objectid import ObjectId
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-client = MongoClient(os.getenv("MONGO_URI"))
-db = client[os.getenv("DB_NAME")]
-bcrypt = Bcrypt()
+from bson import ObjectId
 
 class User:
-    @staticmethod
-    def get_all_users():
-        users = db.users.find()
-        return list(users)
+    def __init__(self, db):
+        self.collection = db['users']
 
-    @staticmethod
-    def update_name(user_id, new_name):
-        db.users.update_one({'_id': ObjectId(user_id)}, {'$set': {'u_name': new_name}})
+    def get_all_users(self):
+        try:
+            users = list(self.collection.find({}))
+            print("Users fetched from db:", users)  # Hata ayıklama çıktısı
+            for user in users:
+                user['_id'] = str(user['_id'])  # ObjectId'yi stringe çevir
+            return users
+        except Exception as e:
+            print("Error fetching users:", str(e))
+            return []
 
-    @staticmethod
-    def update_email(user_id, new_email):
-        db.users.update_one({'_id': ObjectId(user_id)}, {'$set': {'u_email': new_email}})
+    def add_user(self, name, email, password):
+        try:
+            user = {
+                "u_name": name,
+                "u_email": email,
+                "u_password": password
+            }
+            self.collection.insert_one(user)
+        except Exception as e:
+            raise e
 
-    @staticmethod
-    def update_password(user_id, new_password):
-        hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
-        db.users.update_one({'_id': ObjectId(user_id)}, {'$set': {'u_password': hashed_password}})
+    def update_name(self, user_id, new_name):
+        try:
+            self.collection.update_one({"_id": ObjectId(user_id)}, {"$set": {"name": new_name}})
+        except Exception as e:
+            raise e
 
-    @staticmethod
-    def delete_user(user_id):
-        db.users.update_one({'_id': ObjectId(user_id)}, {'$set': {'is_active': False}})
+    def update_email(self, user_id, new_email):
+        try:
+            self.collection.update_one({"_id": ObjectId(user_id)}, {"$set": {"email": new_email}})
+        except Exception as e:
+            raise e
 
-    @staticmethod
-    def get_user_by_id(user_id):
-        user = db.users.find_one({'_id': ObjectId(user_id), 'is_active': True})
-        return user
+    def update_password(self, user_id, new_password):
+        try:
+            self.collection.update_one({"_id": ObjectId(user_id)}, {"$set": {"password": new_password}})
+        except Exception as e:
+            raise e
+
+    def delete_user(self, user_id):
+        try:
+            self.collection.delete_one({"_id": ObjectId(user_id)})
+        except Exception as e:
+            raise e

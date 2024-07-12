@@ -1,17 +1,11 @@
-import os
 from pymongo import MongoClient
-from dotenv import load_dotenv
-
-load_dotenv()
-
-MONGODB_URI = os.getenv('MONGODB_URI')
 
 def connect_db():
     try:
-        client = MongoClient(MONGODB_URI, serverSelectionTimeoutMS=5000)
-        db = client.get_database()
-        print("Successfully to db.")
+        client = MongoClient('mongodb+srv://dilsadrukiyeerdogan:WT2w2UbjUVwZszG1@fitnesstracking.ivawxw1.mongodb.net/')
+        db = client['test']
+        print("Successfully connected to db.")
         return db
-    except Exception as error:
-        print(f"Error connecting to the database: {error}")
-        raise error
+    except Exception as e:
+        print("Error connecting to db:", str(e))
+        return None
