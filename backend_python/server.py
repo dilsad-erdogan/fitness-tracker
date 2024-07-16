@@ -5,6 +5,7 @@ from models.heightWeight import HeightWeight
 from models.movement import Movement
 from controllers.user import user_bp, initialize_user_model
 from controllers.heightWeight import hw_bp, initialize_hw_model
+from controllers.movement import m_bp, initialize_movement_model
 
 app = Flask(__name__)
 db = connect_db()
