@@ -3,5 +3,41 @@
 
     .homeContainer{
         flex: 6;
+
+        .widgets{
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .container{
+            display: flex;
+            
+            .featured{
+                padding: 20px;
+                flex: 5;
+
+                .featuredTitle{
+                    font-weight: 500;
+                }
+            }
+
+            .chart{
+                padding: 20px;
+                flex: 5;
+
+                .chartTitle{
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .programs{
+            padding: 20px;
+
+            .programsTitle{
+                font-weight: 500;
+            }
+        }
     }
 }
