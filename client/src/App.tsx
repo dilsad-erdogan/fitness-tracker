@@ -1,8 +1,8 @@
-import LoginForm from './components/login/LoginForm';
-import RegisterForm from './components/register/RegisterForm';
-import FALoginForm from './components/login/2FALoginForm';
-import AdminPanel from './components/admin/AdminPanel';
-import UserPanel from './components/user/UserPanel';
+import LoginForm from './pages/login/LoginForm';
+import RegisterForm from './pages/register/RegisterForm';
+import FALoginForm from './pages/login/2FALoginForm';
+import AdminPanel from './pages/admin/AdminPanel';
+import UserPanel from './pages/user/UserPanel';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 const App = () => {
