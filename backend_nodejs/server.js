@@ -23,6 +23,8 @@ app.use('/set', require('./routes/set'));
 app.use('/user', require('./routes/user'));
 app.use('/userProgram', require('./routes/userProgram'));
 app.use('/userRole', require('./routes/userRole'));
+app.use('/todo', require('./routes/todoList'));
+app.use('/weeklyCalorie', require('./routes/weeklyCalorie'));
 
 app.get('/', (req, res) => {
     res.setHeader("Access-Control-Allow-Credentials", "true");
