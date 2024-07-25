@@ -8,6 +8,7 @@ from models.movementTitle import MovementTitle
 from models.program import Program
 from models.set import Set
 from models.userProgram import UserProgram
+from models.userRole import UserRole
 
 from controllers.user import user_bp, initialize_user_model
 from controllers.heightWeight import hw_bp, initialize_hw_model
@@ -16,6 +17,7 @@ from controllers.movementTitle import mt_bp, initialize_title_model
 from controllers.program import p_bp, initialize_program_model
 from controllers.set import s_bp, initialize_set_model
 from controllers.userProgram import up_bp, initialize_userProgram_model
+from controllers.userRole import r_bp, initialize_role_model
 
 app = Flask(__name__)
 db = connect_db()
@@ -27,7 +29,8 @@ movement_model = Movement(db)
 title_model = MovementTitle(db)
 program_model = Program(db)
 set_model = Set(db)
-userProgram_model = Set(db)
+userProgram_model = UserProgram(db)
+role_model = UserRole(db)
 
 # Register Blueprint and initialize user model
 app.register_blueprint(user_bp, url_prefix='/user')
@@ -44,6 +47,8 @@ app.register_blueprint(s_bp, url_prefix='/set')
 initialize_set_model(set_model)
 app.register_blueprint(up_bp, url_prefix='/userProgram')
 initialize_userProgram_model(userProgram_model)
+app.register_blueprint(r_bp, url_prefix='/userRole')
+initialize_role_model(role_model)
 
 @app.route('/')
 def home():
