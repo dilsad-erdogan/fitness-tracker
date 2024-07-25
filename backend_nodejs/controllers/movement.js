@@ -18,7 +18,7 @@ async function getMovement (req, res) {
 
 async function addMovement (req, res) {
     try{
-        const { m_tid, m_name, m_description, m_photo, m_video } = req.body;
+        const { m_tid, m_name, m_description, m_photo, m_video, calorie } = req.body;
 
         const t_id = await MovemetTitle.findById(m_tid);
 
@@ -32,6 +32,7 @@ async function addMovement (req, res) {
             m_description: m_description,
             m_photo: m_photo,
             m_video: m_video,
+            calorie: calorie,
             date_time: Date.now(),
             is_active: true
         });
@@ -108,6 +109,26 @@ async function updateVideo (req, res) {
     }
 }
 
+async function updateCalorie (req, res) {
+    try{
+        const m_id = req.params.id;
+        const { calorie } = req.body;
+
+        const movement = await Movement.findById(m_id);
+        if(!movement) {
+            return res.status(404).json({ success: false, message: 'Movement not found' });
+        }
+
+        movement.calorie = calorie;
+        movement.save();
+
+        res.status(200).json({ success: true, message: 'Movement updated calorie successfully' });
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({ message: error });
+    }
+}
+
 async function deleteMovement (req, res) {
     try{
         const m_id = req.params.id;
@@ -141,12 +162,29 @@ async function getMovementById (req, res) {
     }
 }
 
+async function total (req, res) {
+    try{
+        const movements = await Movement.find();
+
+        if(movements.length > 0){
+            res.status(200).json({ success: true, data: movements.length });
+        } else {
+            res.status(404).json({ success: false, message: 'Movement not found' });
+        }
+    } catch(error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error!' });
+    }
+}
+
 module.exports = {
     getMovement,
     addMovement,
     updateDescription,
     updatePhoto,
     updateVideo,
+    updateCalorie,
     deleteMovement,
-    getMovementById
+    getMovementById,
+    total
 }

@@ -76,7 +76,7 @@ MOVEMENT
   }
   const setM = async() => {
     try{
-      const data = { m_tid: email, m_name: name, m_description: desc, m_photo: photo, m_video: video };
+      const data = { m_tid: email, m_name: name, m_description: desc, m_photo: photo, m_video: video, calorie: calorie };
       const response = await mService.add(data);
       console.log(response.message);
     } catch(error){
@@ -102,6 +102,14 @@ MOVEMENT
   const updateMV = async() => {
     try{
       const data = await mService.updateVideo(id, { m_video: video });
+      console.log(data.message);
+    } catch(error){
+      console.error(error);
+    }
+  }
+  const updateMC = async() => {
+    try{
+      const data = await mService.updateCalorie(id, { calorie: calorie });
       console.log(data.message);
     } catch(error){
       console.error(error);

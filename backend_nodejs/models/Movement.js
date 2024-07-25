@@ -21,6 +21,11 @@ const movementSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    calorie: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     date_time: {
         type: Date,
         default: Date.now

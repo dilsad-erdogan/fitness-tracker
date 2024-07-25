@@ -71,6 +71,16 @@ const byId = async (id) => {
     }
 };
 
+const total = async () => {
+    try{
+        const response = await axios.get(`${M}/total`);
+        return response.data;
+    } catch (error){
+        console.error('Error fetching total:', error);
+        throw error;
+    }
+}
+
 const mServices = {
     get,
     add,
@@ -78,7 +88,8 @@ const mServices = {
     updatePhoto,
     updateVideo,
     deleted,
-    byId
+    byId,
+    total
 };
 
 export default mServices;
