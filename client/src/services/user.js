@@ -63,13 +63,24 @@ const byId = async (id) => {
     }
 };
 
+const total = async () => {
+    try{
+        const response = await axios.get(`${U}/total`);
+        return response.data;
+    } catch (error){
+        console.error('Error fetching total:', error);
+        throw error;
+    }
+}
+
 const uServices = {
     get,
     updateName,
     updateEmail,
     updatePassword,
     deleted,
-    byId
+    byId,
+    total
 };
 
 export default uServices;

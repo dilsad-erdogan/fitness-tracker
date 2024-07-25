@@ -108,11 +108,27 @@ async function getUserById (req, res) {
     }
 }
 
+async function total (req, res) {
+    try{
+        const users = await User.find();
+
+        if(users.length > 0){
+            res.status(200).json({ success: true, data: users.length });
+        } else {
+            res.status(404).json({ success: false, message: 'User not found!' });
+        }
+    } catch(error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error!' });
+    }
+}
+
 module.exports = {
     getUser,
     updateName,
     updateEmail,
     updatePassword,
     deleteUser,
-    getUserById
+    getUserById,
+    total
 }
