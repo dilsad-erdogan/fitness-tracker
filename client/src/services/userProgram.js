@@ -81,6 +81,16 @@ const byId = async (id) => {
     }
 };
 
+const total = async () => {
+    try{
+        const response = await axios.get(`${UP}/total`);
+        return response.data;
+    } catch (error){
+        console.error('Error fetching total:', error);
+        throw error;
+    }
+}
+
 const hwServices = {
     get,
     add,
@@ -89,7 +99,8 @@ const hwServices = {
     updateDuration,
     updateTime,
     deleted,
-    byId
+    byId, 
+    total
 };
 
 export default hwServices;
