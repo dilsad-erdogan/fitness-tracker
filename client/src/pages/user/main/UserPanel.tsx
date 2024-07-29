@@ -1,14 +1,14 @@
-import "./style.scss";
-import Sidebar from "../../components/sidebar/SidebarinUser";
-import Navbar from "../../components/navbar/NavbarinUser";
-import Message from "../../components/diaryMessage/Message";
-import Widget from "../../components/widgets/WidgetinUser";
-import Todolist from "../../components/todolist/Todolist";
-import DailyPlan from "../../components/dailyPlan/DailyPlan";
-import Weather from "../../components/weather/Weather";
-import Profile from "../../components/userProfile/Profile";
-import Info from "../../components/userProfile/Info";
-import WeeklySport from "../../components/weeklySport/WeeklySport";
+import "../style.scss";
+import Sidebar from "../../../components/sidebar/SidebarinUser";
+import Navbar from "../../../components/navbar/NavbarinUser";
+import Message from "../../../components/diaryMessage/Message";
+import Widget from "../../../components/widgets/WidgetinUser";
+import Todolist from "../../../components/todolist/Todolist";
+import DailyPlan from "../../../components/dailyPlan/DailyPlan";
+import Weather from "../../../components/weather/Weather";
+import Profile from "../../../components/userProfile/Profile";
+import Info from "../../../components/userProfile/Info";
+import WeeklySport from "../../../components/weeklySport/WeeklySport";
 
 const UserPanel = () => {
   return (

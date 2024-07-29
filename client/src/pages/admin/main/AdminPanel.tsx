@@ -1,10 +1,10 @@
-import "./style.scss";
-import Sidebar from "../../components/sidebar/SidebarinAdmin";
-import Navbar from "../../components/navbar/NavbarinAdmin";
-import Widget from "../../components/widgets/WidgetinAdmin";
-import Featured from "../../components/featured/Featured";
-import Chart from "../../components/chart/Chart";
-import Program from "../../components/mostPrograms/Programs";
+import "../style.scss";
+import Sidebar from "../../../components/sidebar/SidebarinAdmin";
+import Navbar from "../../../components/navbar/NavbarinAdmin";
+import Widget from "../../../components/widgets/WidgetinAdmin";
+import Featured from "../../../components/featured/Featured";
+import Chart from "../../../components/chart/Chart";
+import Program from "../../../components/mostPrograms/Programs";
 
 const AdminPanel = () => {
   return (

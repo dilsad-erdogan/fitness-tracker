@@ -10,13 +10,18 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const menuItems = [
   {
-    title: "Pages",
+    title: "Main",
     list: [
       {
         title: "My Dashboard",
         path: "/user",
         icon: <MdDomain></MdDomain>
-      },
+      }
+    ]
+  },
+  {
+    title: "Pages",
+    list: [
       {
         title: "My Workoutplan",
         path: "/user/plan",
