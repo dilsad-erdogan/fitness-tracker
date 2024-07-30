@@ -1,6 +1,6 @@
 import "../style.scss";
 import Sidebar from "../../../components/sidebar/SidebarinUser";
-import Navbar from "../../../components/navbar/NavbarinUser";
+import Navbar from "../../../components/navbar/Navbar";
 import Message from "../../../components/diaryMessage/Message";
 import Widget from "../../../components/widgets/WidgetinUser";
 import Todolist from "../../../components/todolist/Todolist";
