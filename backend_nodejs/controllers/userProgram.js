@@ -163,7 +163,8 @@ async function getUserProgramById (req, res) {
 
 async function total (req, res) {
     try{
-        const uPrograms = await UserProgram.find();
+        const u_id = req.params.id;
+        const uPrograms = await UserProgram.findById(u_id);
 
         if(uPrograms.length > 0){
             res.status(200).json({ success: true, data: uPrograms.length });

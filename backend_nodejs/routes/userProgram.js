@@ -10,6 +10,6 @@ router.route('/updateDuration/:id').put(updateDuration);
 router.route('/updateTime/:id').put(updateTime);
 router.route('/delete/:id').patch(deleteUserProgram);
 router.route('/byId/:id').get(getUserProgramById);
-router.route('/total').get(total);
+router.route('/total/:id').get(total);
 
 module.exports = router;

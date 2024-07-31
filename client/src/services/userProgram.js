@@ -81,9 +81,9 @@ const byId = async (id) => {
     }
 };
 
-const total = async () => {
+const total = async (id) => {
     try{
-        const response = await axios.get(`${UP}/total`);
+        const response = await axios.get(`${UP}/total/${id}`);
         return response.data;
     } catch (error){
         console.error('Error fetching total:', error);
