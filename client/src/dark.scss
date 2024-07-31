@@ -1,15 +1,6 @@
 .app.dark {
     background-color: var(--dark);
-    color: var(--veryLight);
-  
-    .navbar {
-        color: var(--veryLight);
-        border-color: var(--lightDark);
-    
-        .search {
-            border-color: var(--lightDark);
-        }
-    }
+    color: var(--light);
   
     .sidebar {
         background-color: var(--dark);
@@ -17,7 +8,7 @@
     
         .top {
             .logo {
-                color: var(--veryLight);
+                color: var(--light);
             }
         }
         hr {
@@ -27,7 +18,7 @@
         ul {
             li {
                 li:hover {
-                    background-color: var(--veryLight);
+                    background-color: var(--light);
                 }
         
                 .icon {
@@ -40,7 +31,46 @@
             color: var(--lightDark);
         }
     }
-  
+
+    .homeContainer{
+        background-color: var(--dark);
+
+        .navbar {
+            color: var(--light);
+            border-color: var(--lightDark);
+        
+            .search {
+                border-color: var(--lightDark);
+            }
+        }
+
+        .widget{
+            background-color: var(--light);
+            
+            .left{
+                .title{
+                    color: var(--dark);
+                }
+
+                .link{
+                    border: 1px solid var(--dark);
+                    color: var(--dark);
+                }
+
+                .linkUser{
+                    border: 1px solid var(--dark);
+                    color: var(--dark);
+                }
+            }
+
+            .right{
+                .circle{
+                    color: var(--dark);
+                }
+            }
+        }
+    }
+    
     input{
         background-color: transparent;
     }

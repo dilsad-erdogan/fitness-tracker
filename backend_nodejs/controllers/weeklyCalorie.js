@@ -210,9 +210,9 @@ async function deleteWeekly(req, res){
 async function getWeeklyById(req, res){
     try{
         const id = req.params.id;
-        const weekly = await WeeklyCalorie.findById(id);
+        const weekly = await WeeklyCalorie.findOne({ u_id: id, is_active: true });
 
-        if(weekly && weekly.is_active === true){
+        if(weekly){
             res.status(200).json({ success: true, data: weekly });
         } else {
             res.status(404).json({ success: false, error: 'Todo not found!' });

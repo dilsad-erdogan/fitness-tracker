@@ -2,11 +2,11 @@
     display: flex;
     justify-content: space-between;
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     -webkit-box-shadow: 2px 4px 10px 1px var(--dark);
     box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
     border-radius: 10px;
-    height: 120px;
+    height: 140px;
     background-color: var(--dark);
 
     .left{
@@ -24,6 +24,15 @@
         .link{
             width: max-content;
             font-size: 12px;
+            border: 1px solid var(--veryLight);
+            border-radius: 10px;
+            padding: 6px;
+            color: var(--veryLight);
+        }
+
+        .linkUser{
+            width: max-content;
+            font-size: 20px;
             border: 1px solid var(--veryLight);
             border-radius: 10px;
             padding: 6px;

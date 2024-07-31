@@ -105,8 +105,8 @@ async function deleteHeightWeight (req, res) {
 
 async function getHeightWeightById (req, res) {
     try{
-        const hw_id = req.params.id;
-        const hw = await HeightWeight.findById(hw_id);
+        const id = req.params.id;
+        const hw = await HeightWeight.findOne({ hw_uid: id, is_active: true });
 
         if(hw && hw.is_active === true){
             res.status(200).json({ success: true, data: hw });
