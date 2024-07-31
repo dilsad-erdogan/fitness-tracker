@@ -1,8 +1,8 @@
 .sidebar{
     flex: 1;
-    border-right: 0.5px solid rgb(230, 227, 227);
+    border-right: 0.5px solid var(--lightDark);
     min-height: 100vh;
-    background-color: white;
+    background-color: var(--veryLight);
 
     .top{
         height: 50px;
@@ -13,13 +13,13 @@
         .logo{
             font-size: 20px;
             font-weight: bold;
-            color: #6439ff;
+            color: var(--dark);
         }
     }
 
     hr{
         height: 0;
-        border-right: 0.5px solid rgb(230, 227, 227);
+        border-right: 0.5px solid var(--dark);
     }
 
     .center{
@@ -31,7 +31,7 @@
             .title{
                 font-size: 10px;
                 font-weight: bold;
-                color: #999;
+                color: var(--dark);
                 margin-top: 15px;
                 margin-bottom: 5px;
             }
@@ -43,7 +43,7 @@
 
                 .icon{
                     font-size: 18px;
-                    color: #7451f8;
+                    color: var(--dark);
                     padding: 10px;
                     display: flex;
                     align-items: center;
@@ -53,17 +53,17 @@
                 }
 
                 .icon:hover{
-                    background-color: #ece8ff;
+                    background-color: var(--light);
                 }
 
                 .active{
-                    background-color: #ece8ff;
+                    background-color: var(--light);
                 }
 
                 span{
                     font-size: 13px;
                     font-weight: 600;
-                    color: #888;
+                    color: var(--dark);
                     margin-left: 10px;
                 }
             }
@@ -80,11 +80,11 @@
         border-radius: 10px;
         background: none;
         border: none;
-        color: #7451f8;
+        color: var(--dark);
         width: 100%;
     }
 
     .logout:hover{
-        background-color: #ece8ff;
+        background-color: var(--light);
     }
 }

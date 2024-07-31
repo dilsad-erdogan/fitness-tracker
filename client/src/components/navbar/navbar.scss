@@ -1,10 +1,10 @@
 .navbar{
     height: 50px;
-    border-bottom: 0.5px solid rgb(231, 228, 228);
+    border-bottom: 0.5px solid var(--lightDark);
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: #555;
+    color: var(--dark);
 
     .wrapper {
         width: 100%;
@@ -16,7 +16,8 @@
         .search {
             display: flex;
             align-items: center;
-            border: 0.5px solid lightgray;
+            border: 0.5px solid var(--dark);
+            color: var(--dark);
             padding: 3px;
   
             input {
@@ -49,7 +50,7 @@
                     height: 15px;
                     background-color: red;
                     border-radius: 50%;
-                    color: white;
+                    color: var(--veryLight);
                     display: flex;
                     align-items: center;
                     justify-content: center;
