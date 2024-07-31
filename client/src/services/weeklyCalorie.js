@@ -1,9 +1,9 @@
 import axios from 'axios';
 const W = "http://localhost:3000/weeklyCalorie";
 
-const get = async (id) => {
+const get = async () => {
     try{
-        const response = await axios.get(`${W}/get/${id}`);
+        const response = await axios.get(`${W}/get`);
         return response.data;
     } catch(error) {
         console.error('Error fetching:', error);

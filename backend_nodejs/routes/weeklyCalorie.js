@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getWeekly, addWeekly, updateMonday, updateTuesday, updateWednesday, updateThursday, updateFriday, updateSaturday, updateSunday, deleteWeekly, getWeeklyById } = require('../controllers/weeklyCalorie');
 
-router.route('/get/:id').get(getWeekly);
+router.route('/get').get(getWeekly);
 router.route('/add').post(addWeekly);
 router.route('/updateMonday/:id').put(updateMonday);
 router.route('/updateTuesday/:id').put(updateTuesday);

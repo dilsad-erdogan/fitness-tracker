@@ -3,10 +3,9 @@ const User = require('../models/User');
 
 async function getTodoList(req, res) {
     try {
-        const userId = req.params.id;
-        const lists = await Todolist.find({ u_id: userId, is_active: true });
+        const lists = await Todolist.find();
 
-        if (lists.length > 0) {
+        if (lists) {
             res.status(200).json({ success: true, data: lists });
         } else {
             res.status(404).json({ success: false, message: 'List not found' });
