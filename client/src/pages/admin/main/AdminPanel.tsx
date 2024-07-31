@@ -1,4 +1,5 @@
 import "../style.scss";
+import { useEffect, useState } from "react";
 import Sidebar from "../../../components/sidebar/SidebarinAdmin";
 import Navbar from "../../../components/navbar/Navbar";
 import Widget from "../../../components/widgets/WidgetinAdmin";
@@ -6,7 +7,48 @@ import Featured from "../../../components/featured/Featured";
 import Chart from "../../../components/chart/Chart";
 import Program from "../../../components/mostPrograms/Programs";
 
+import uServices from "../../../services/user";
+import mServices from "../../../services/movement";
+import pServices from "../../../services/program";
+
 const AdminPanel = () => {
+  const [user, setUser] = useState('');
+  const [movement, setMovement] = useState('');
+  const [program, setProgram] = useState('');
+
+  useEffect(() => {
+    const fetchUser = async() => {
+      try{
+        const response = await uServices.total();
+        setUser(response.data);
+      } catch(error){
+        console.error(error);
+      }
+    };
+
+    const fetchMovement = async() => {
+      try{
+        const response = await mServices.total();
+        setMovement(response.data);
+      } catch(error){
+        console.error(error);
+      }
+    };
+
+    const fetchProgram = async() => {
+      try{
+        const response = await pServices.total();
+        setProgram(response.data);
+      } catch(error){
+        console.error(error);
+      }
+    };
+
+    fetchUser();
+    fetchMovement();
+    fetchProgram();
+  });
+
   return (
     <div className="adminPanel">
       <Sidebar></Sidebar>
@@ -15,9 +57,9 @@ const AdminPanel = () => {
         <Navbar></Navbar>
 
         <div className="widgets">
-          <Widget type="users"></Widget>
-          <Widget type="movements"></Widget>
-          <Widget type="programs"></Widget>
+          <Widget type="users" total={user}></Widget>
+          <Widget type="movements" total={movement}></Widget>
+          <Widget type="programs" total={program}></Widget>
         </div>
 
         <div className="container">

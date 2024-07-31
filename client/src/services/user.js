@@ -1,5 +1,3 @@
-// UP=http://localhost:3000/userProgram
-// UR=http://localhost:3000/userRole
 import axios from 'axios';
 const U = "http://localhost:3000/user";
 
