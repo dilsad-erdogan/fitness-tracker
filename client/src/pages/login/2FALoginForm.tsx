@@ -41,13 +41,13 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='w-full h-screen flex items-start bg-[#f5f5f5]'>
+    <div className='w-full h-screen flex items-start bg-[#FFF8F3]'>
       <div className='relative w-1/2 h-full flex flex-col'>
         <img src={LOGIN_IMAGE} className='w-full h-full object-cover m-5'></img>
       </div>
 
-      <div className='w-1/2 h-full bg-[#f5f5f5] flex flex-col p-20 justify-between'>
-        <h1 className='text-xl text-[#060606] font-semibold'>Fitness Tracker</h1>
+      <div className='w-1/2 h-full bg-[#FFF8F3] flex flex-col p-20 justify-between'>
+        <h1 className='text-xl text-[#405D72] font-semibold'>Fitness Tracker</h1>
 
         <div className='w-full flex flex-col max-w-[500px]'>
           <div className='w-full flex flex-col mb-2'>
@@ -61,20 +61,20 @@ const LoginForm = () => {
           </div>
 
           <div className='w-full flex flex-col my-4'>
-            <button className='w-full text-white my-2 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center' onClick={getCode}>Send Code</button>
+            <button className='w-full text-white my-2 font-semibold bg-[#405D72] rounded-md p-4 text-center flex items-center justify-center' onClick={getCode}>Send Code</button>
           </div>
 
           <div className='w-full flex flex-col'>
-            <input className='w-full text-black py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none' type='text' placeholder='Code' value={code} onChange={handleCodeChange}></input>
+            <input className='w-full text-[#405D72] py-2 my-2 bg-transparent border-b border-black outline-none focus:outline-none' type='text' placeholder='Code' value={code} onChange={handleCodeChange}></input>
           </div>
 
           <div className='w-full flex flex-col my-4'>
-            <button className='w-full text-white my-2 font-semibold bg-[#060606] rounded-md p-4 text-center flex items-center justify-center' onClick={handleSubmit}>Login</button>
+            <button className='w-full text-white my-2 font-semibold bg-[#405D72] rounded-md p-4 text-center flex items-center justify-center' onClick={handleSubmit}>Login</button>
           </div>
         </div>
 
         <div className='w-full flex items-center justify-center'>
-          <p className='text-sm font-normal text-[#060606]'>Dont have a account? <Link to="/register" className='font-semibold underline underline-offset-2 cursor-pointer'>Sign up</Link></p>
+          <p className='text-sm font-normal text-[#405D72]'>Dont have a account? <Link to="/register" className='font-semibold underline underline-offset-2 cursor-pointer'>Sign up</Link></p>
         </div>
       </div>
     </div>

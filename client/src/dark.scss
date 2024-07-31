@@ -1,43 +1,43 @@
 .app.dark {
-    background-color: #111;
-    color: rgb(156, 156, 156);
+    background-color: var(--dark);
+    color: var(--veryLight);
   
     .navbar {
-        color: #999;
-        border-color: #333;
+        color: var(--veryLight);
+        border-color: var(--lightDark);
     
         .search {
-            border-color: gray;
+            border-color: var(--lightDark);
         }
     }
   
     .sidebar {
-        background-color: #111;
-        border-color: #333;
+        background-color: var(--dark);
+        border-color: var(--lightDark);
     
         .top {
             .logo {
-                color: #999;
+                color: var(--veryLight);
             }
         }
         hr {
-            border-color: #333;
+            border-color: var(--lightDark);
         }
     
         ul {
             li {
                 li:hover {
-                    background-color: #333;
+                    background-color: var(--veryLight);
                 }
         
                 .icon {
-                    color: #999;
+                    color: var(--lightDark);
                 }
             }
         }
 
         .logout{
-            color: #999;
+            color: var(--lightDark);
         }
     }
   

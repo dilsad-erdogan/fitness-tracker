@@ -7,3 +7,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+:root{
+    --dark: #405D72;
+    --lightDark: #758694;
+    --light: #F7E7DC;
+    --veryLight: #FFF8F3;
+}
