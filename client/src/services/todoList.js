@@ -1,9 +1,9 @@
 import axios from "axios";
 const T = "http://localhost:3000/todo";
 
-const get = async () => {
+const get = async (id) => {
     try{
-        const response = await axios.get(`${T}/get`);
+        const response = await axios.get(`${T}/get/${id}`);
         return response.data;
     } catch (error){
         console.error('Error fetching todo:', error);
