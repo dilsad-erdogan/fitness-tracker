@@ -44,7 +44,12 @@ const UserPanel = () => {
       const fetchCalorie = async() => {
         try{
           const response = await wServices.byId(id);
-          setCalorie(response.data.monday);
+          const currentDayIndex = new Date().getDay();
+          const dayMap = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+          
+          const currentDay = dayMap[currentDayIndex];
+
+          setCalorie(response.data[currentDay]);
         } catch(error) {
           console.error(error);
         }
