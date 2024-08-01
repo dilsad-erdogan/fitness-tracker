@@ -3,6 +3,8 @@
     border-right: 0.5px solid var(--lightDark);
     min-height: 100vh;
     background-color: var(--veryLight);
+    overflow-y: auto;
+    position: relative;
 
     .top{
         height: 50px;
@@ -87,4 +89,8 @@
     .logout:hover{
         background-color: var(--light);
     }
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
 }

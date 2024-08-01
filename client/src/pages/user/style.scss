@@ -1,5 +1,7 @@
 .userPanel{
     display: flex;
+    height: 100vh;
+    overflow: hidden;
 
     .homeContainer{
         flex: 6;
