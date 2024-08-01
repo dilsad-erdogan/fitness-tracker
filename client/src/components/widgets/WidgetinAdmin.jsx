@@ -34,13 +34,14 @@ const Widget = ({ type, total }) => {
     <div className='widget'>
       <div className='left'>
         <span className="title">{data.title}</span>
-        <Link to={data.link} style={{ textDecoration: "none", margin: 20 }}>
-          <span className="link">{data.text}</span>
+        <Link to={data.link} className='link'>
+          <span>{data.text}</span>
         </Link>
       </div>
       <div className='right'>
-        <svg className="transform w-60 h-60">
-          <circle className='circle' cx="170" cy="50" r="40" stroke="currentColor" strokeWidth="10" strokeDasharray={total*100} fill="transparent"></circle>
+        <span className='total'>{total}</span>
+        <svg className="circle-container">
+          <circle className='circle' cx="40" cy="40" r="35" stroke="currentColor" strokeWidth="10" strokeDasharray={total*100} fill="transparent"></circle>
         </svg>
       </div>
     </div>
