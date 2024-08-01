@@ -51,8 +51,8 @@ const LoginForm = () => {
 
         <div className='w-full flex flex-col max-w-[500px]'>
           <div className='w-full flex flex-col mb-2'>
-            <h3 className='text-3xl font-semibold mb-2'>2Fa verify login</h3>
-            <p className='text-base mb-2'>Welcome Back! Please enter your details.</p>
+            <h3 className='text-3xl font-semibold mb-2 text-[#405D72]'>2Fa verify login</h3>
+            <p className='text-base mb-2 text-[#405D72]'>Welcome Back! Please enter your details.</p>
           </div>
 
           <div className='w-full flex flex-col'>
