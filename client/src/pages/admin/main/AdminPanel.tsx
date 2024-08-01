@@ -10,11 +10,13 @@ import Program from "../../../components/mostPrograms/Programs";
 import uServices from "../../../services/user";
 import mServices from "../../../services/movement";
 import pServices from "../../../services/program";
+import upServices from "../../../services/userProgram";
 
 const AdminPanel = () => {
   const [user, setUser] = useState('');
   const [movement, setMovement] = useState('');
   const [program, setProgram] = useState('');
+  const [userProgram, setUserProgram] = useState('');
 
   useEffect(() => {
     const fetchUser = async() => {
@@ -43,10 +45,20 @@ const AdminPanel = () => {
         console.error(error);
       }
     };
+    
+    const fetchUserProgram = async() => {
+      try{
+        const response = await upServices.totalAll();
+        setUserProgram(response.data);
+      } catch(error){
+        console.error(error);
+      }
+    };
 
     fetchUser();
     fetchMovement();
     fetchProgram();
+    fetchUserProgram();
   });
 
   return (
@@ -60,6 +72,7 @@ const AdminPanel = () => {
           <Widget type="users" total={user}></Widget>
           <Widget type="movements" total={movement}></Widget>
           <Widget type="programs" total={program}></Widget>
+          <Widget type="userprograms" total={userProgram}></Widget>
         </div>
 
         <div className="container">

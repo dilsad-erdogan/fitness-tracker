@@ -177,6 +177,21 @@ async function total (req, res) {
     }
 }
 
+async function totalAll (req, res) {
+    try{
+        const programs = await UserProgram.find();
+
+        if(programs.length > 0){
+            res.status(200).json({ success: true, data: programs.length });
+        } else {
+            res.status(404).json({ success: false, message: 'Program not found!' });
+        }
+    } catch(error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error!' });
+    }
+}
+
 module.exports = {
     getUserProgram,
     addUserProgram,
@@ -186,5 +201,6 @@ module.exports = {
     updateTime,
     deleteUserProgram,
     getUserProgramById,
-    total
+    total,
+    totalAll
 }

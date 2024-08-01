@@ -1,35 +1,32 @@
 .widget{
     flex: 1;
-    padding: 12px;
+    padding: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 10px;
-    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-    background-color: var(--dark);
+    border-radius: 20px;
+    box-shadow: 2px 4px 10px 1px var(--light);
+    background-color: var(--light);
 
     .left{
         display: flex;
         flex-direction: column;
-        align-items: center;
 
         .title{
             font-weight: bold;
             font-size: 14px;
-            color: var(--veryLight);
-            margin-bottom: 10px;
+            color: var(--dark);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
         }
 
-        .link {
-            font-size: 1rem;
-            background-color: transparent;
-            border: 1px solid var(--veryLight);
-            padding: 5px 10px;
-            border-radius: 5px;
-            text-decoration: none;
-            color: var(--veryLight);
-            transition: background-color 0.3s, color 0.3s;
-            cursor: pointer;
+        .total {
+            font-weight: bold;
+            font-size: 14px;
+            color: var(--dark);
+            font-size: 2rem;
+            padding: 5px;
         }
     }
 
@@ -37,20 +34,42 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: var(--veryLight);
-
-        .total {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
+        color: var(--dark);
 
         svg{
             width: 80px;
             height: 80px;
+        }
+    }
+}
 
-            .circle{
-                stroke: var(--veryLight);
+.widget:hover{
+    background-color: var(--dark);
+    box-shadow: 2px 4px 10px 1px var(--dark);
+            
+    .left{
+        .title{
+            color: var(--light);
+        }
+
+        .total{
+            color: var(--light);
+        }
+
+        .linkUser{
+            border: 1px solid var(--light);
+            color: var(--light);
             }
+    }
+
+    .right{
+        color: var(--light);
+        width: 80px;
+        height: 80px;
+
+        .chart{
+            width: 100%;
+            height: 100%;
         }
     }
 }

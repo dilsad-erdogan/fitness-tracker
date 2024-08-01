@@ -18,7 +18,7 @@
         ul {
             li {
                 li:hover {
-                    background-color: var(--light);
+                    background-color: var(--lightDark);
                 }
         
                 .icon {
@@ -45,15 +45,39 @@
         }
 
         .widget{
+            background-color: var(--lightDark);
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            
+            .left{
+                .title{
+                    color: var(--light);
+                }
+
+                .total{
+                    color: var(--light);
+                }
+
+                .linkUser{
+                    border: 1px solid var(--light);
+                    color: var(--light);
+                }
+            }
+
+            .right{
+                color: var(--light);
+            }
+        }
+
+        .widget:hover{
             background-color: var(--light);
+            box-shadow: 2px 4px 10px 1px var(--light);
             
             .left{
                 .title{
                     color: var(--dark);
                 }
 
-                .link{
-                    border: 1px solid var(--dark);
+                .total{
                     color: var(--dark);
                 }
 
@@ -64,9 +88,7 @@
             }
 
             .right{
-                .circle{
-                    color: var(--dark);
-                }
+                color: var(--dark);
             }
         }
     }

@@ -1,29 +1,40 @@
 import './widget.scss';
-import { Link } from 'react-router-dom';
+import { LineChart, Line, ResponsiveContainer } from 'recharts';
 
 const Widget = ({ type, total }) => {
   let data;
+  const chart = [
+    { name: 'Jan', value: 400 },
+    { name: 'Feb', value: 300 },
+    { name: 'Mar', value: 500 },
+    { name: 'Apr', value: 400 },
+    { name: 'May', value: 600 },
+    { name: 'Jun', value: 700 },
+  ];
 
   switch(type){
     case "users":
       data = {
         title: "TOTAL ACTIVE USERS",
-        text: "See all users",
-        link: "/admin/user"
+        text: "See all users"
       };
       break;
     case "movements":
       data = {
         title: "TOTAL ACTIVE MOVEMENT",
-        text: "See all movement",
-        link: "/admin/movement"
+        text: "See all movement"
       };
       break;
     case "programs":
       data = {
         title: "TOTAL ACTIVE PROGRAMS",
-        text: "See all program",
-        link: "/admin/program"
+        text: "See all program"
+      };
+      break;
+    case "userprograms":
+      data = {
+        title: "TOTAL ACTIVE USER PROGRAMS",
+        text: "See all user program"
       };
       break;
     default:
@@ -34,15 +45,15 @@ const Widget = ({ type, total }) => {
     <div className='widget'>
       <div className='left'>
         <span className="title">{data.title}</span>
-        <Link to={data.link} className='link'>
-          <span>{data.text}</span>
-        </Link>
-      </div>
-      <div className='right'>
         <span className='total'>{total}</span>
-        <svg className="circle-container">
-          <circle className='circle' cx="40" cy="40" r="35" stroke="currentColor" strokeWidth="10" strokeDasharray={total*100} fill="transparent"></circle>
-        </svg>
+      </div>
+
+      <div className='right'>
+        <ResponsiveContainer className='chart'>
+          <LineChart data={chart}>
+            <Line type="monotoneX" dataKey="value" stroke='#758694' strokeWidth={2} />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </div>
   )

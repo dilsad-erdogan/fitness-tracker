@@ -1,7 +1,16 @@
 import './widget.scss';
+import { LineChart, Line, ResponsiveContainer } from 'recharts';
 
 const WidgetinUser = ({ type, total }) => {
   let title;
+  const chart = [
+    { name: 'Jan', value: 400 },
+    { name: 'Feb', value: 300 },
+    { name: 'Mar', value: 500 },
+    { name: 'Apr', value: 400 },
+    { name: 'May', value: 600 },
+    { name: 'Jun', value: 700 },
+  ];
 
   switch(type){
     case "user":
@@ -24,12 +33,14 @@ const WidgetinUser = ({ type, total }) => {
     <div className='widget'>
       <div className='left'>
         <span className="title">{title}</span>
+        <span className="total">{total}</span>
       </div>
       <div className='right'>
-        <span className='total'>{total}</span>
-        <svg className="circle-container">
-          <circle className='circle' cx="40" cy="40" r="35" stroke="currentColor" strokeWidth="10" strokeDasharray={total*100} fill="transparent"></circle>
-        </svg>
+        <ResponsiveContainer className='chart'>
+          <LineChart data={chart}>
+            <Line type="monotoneX" dataKey="value" stroke='#758694' strokeWidth={2} />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </div>
   )
