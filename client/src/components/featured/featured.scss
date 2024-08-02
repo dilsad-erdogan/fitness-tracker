@@ -1,0 +1,148 @@
+.featuredContainer{
+    flex: 2;
+    box-shadow: 2px 4px 10px 1px var(--light);
+    background-color: var(--light);
+    padding: 25px;
+    border-radius: 20px;
+
+    .top{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--dark);
+
+        .title{
+            font-weight: bold;
+            font-size: 20px;
+            color: var(--dark);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .bottom{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+
+        .featuredChart{
+            width: 100px;
+            height: 100px;
+
+            .circle{
+                stroke: var(--dark);
+
+                .CircularProgressbar-path{
+                    stroke: var(--dark);
+                }
+
+                .CircularProgressbar-trail {
+                    stroke: var(--light);
+                }
+            }
+        }
+
+        .title{
+            font-weight: bold;
+            font-size: 14px;
+            color: var(--dark);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .amount{
+            font-size: 30px;
+            color: var(--dark);
+        }
+
+        .desc{
+            font-weight: 300;
+            font-size: 12px;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .summary{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .item{
+                text-align: center;
+
+                .itemTitle{
+                    font-size: 14px;
+                    color: var(--dark);
+                }
+
+                .itemResult{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 10px;
+                    font-size: 14px;
+                    color: var(--dark);
+                }
+            }
+        }
+    }
+}
+
+.featuredContainer:hover{
+    box-shadow: 2px 4px 10px 1px var(--dark);
+    background-color: var(--dark);
+
+    .top{
+        color: var(--light);
+
+        .title{
+            color: var(--light);
+        }
+    }
+
+    .bottom{
+        .featuredChart{
+            .circle{
+                stroke: var(--light);
+
+                .CircularProgressbar-path{
+                    stroke: var(--light);
+                }
+
+                .CircularProgressbar-trail {
+                    stroke: var(--dark);
+                }
+            }
+        }
+
+        .title{
+            color: var(--light);
+        }
+
+        .amount{
+            color: var(--light);
+        }
+
+        .desc{
+            color: var(--light);
+        }
+
+        .summary{
+            .item{
+                .itemTitle{
+                    color: var(--light);
+                }
+
+                .itemResult{
+                    color: var(--light);
+                }
+            }
+        }
+    }
+}

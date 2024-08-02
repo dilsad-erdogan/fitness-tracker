@@ -9,7 +9,7 @@
 
         .widgets{
             display: flex;
-            padding: 20px;
+            padding: 12px;
             gap: 20px;
         }
 
@@ -19,10 +19,6 @@
             .featured{
                 padding: 20px;
                 flex: 5;
-
-                .featuredTitle{
-                    font-weight: 500;
-                }
             }
 
             .chart{

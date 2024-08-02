@@ -77,7 +77,6 @@ const AdminPanel = () => {
 
         <div className="container">
           <div className="featured">
-            <div className="featuredTitle">Active User Rate</div>
             <Featured></Featured>
           </div>
 

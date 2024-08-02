@@ -91,6 +91,112 @@
                 color: var(--dark);
             }
         }
+
+        .featuredContainer{
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            background-color: var(--lightDark);
+        
+            .top{
+                color: var(--light);
+        
+                .title{
+                    color: var(--light);
+                }
+            }
+        
+            .bottom{
+                .featuredChart{
+                    .circle{
+                        stroke: var(--light);
+        
+                        .CircularProgressbar-path{
+                            stroke: var(--light);
+                        }
+        
+                        .CircularProgressbar-trail {
+                            stroke: var(--lightDark);
+                        }
+                    }
+                }
+
+                .title{
+                    color: var(--light);
+                }
+        
+                .amount{
+                    color: var(--light);
+                }
+        
+                .desc{
+                    color: var(--light);
+                }
+        
+                .summary{
+                    .item{
+                        .itemTitle{
+                            color: var(--light);
+                        }
+        
+                        .itemResult{
+                            color: var(--light);
+                        }
+                    }
+                }
+            }
+        }
+
+        .featuredContainer:hover{
+            box-shadow: 2px 4px 10px 1px var(--light);
+            background-color: var(--light);
+        
+            .top{
+                color: var(--dark);
+        
+                .title{
+                    color: var(--dark);
+                }
+            }
+        
+            .bottom{
+                .featuredChart{
+                    .circle{
+                        stroke: var(--dark);
+        
+                        .CircularProgressbar-path{
+                            stroke: var(--dark);
+                        }
+        
+                        .CircularProgressbar-trail {
+                            stroke: var(--light);
+                        }
+                    }
+                }
+
+                .title{
+                    color: var(--dark);
+                }
+        
+                .amount{
+                    color: var(--dark);
+                }
+        
+                .desc{
+                    color: var(--dark);
+                }
+        
+                .summary{
+                    .item{
+                        .itemTitle{
+                            color: var(--dark);
+                        }
+        
+                        .itemResult{
+                            color: var(--dark);
+                        }
+                    }
+                }
+            }
+        }
     }
     
     input{
