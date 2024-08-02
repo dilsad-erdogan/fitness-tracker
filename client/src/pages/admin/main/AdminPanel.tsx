@@ -81,7 +81,6 @@ const AdminPanel = () => {
           </div>
 
           <div className="chart">
-            <div className="chartTitle">Usage Chart By Month</div>
             <Chart></Chart>
           </div>
         </div>

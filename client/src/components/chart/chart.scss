@@ -1,0 +1,20 @@
+.chartContainer {
+    flex: 4;
+    box-shadow: 2px 4px 10px 1px var(--light);
+    background-color: var(--light);
+    padding: 25px;
+    border-radius: 20px;
+  
+    .title{
+        font-weight: bold;
+        font-size: 20px;
+        color: var(--dark);
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .chartGrid {
+        stroke: transparent;
+    }
+}
