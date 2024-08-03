@@ -153,6 +153,40 @@
                 color: var(--light);
             }
         }
+
+        .programContainer{
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            background-color: var(--lightDark);
+        
+            .title{
+                color: var(--light);
+            }
+        
+            .table{
+                color: var(--light);
+                
+                thead{
+                    border-bottom: 0.5px solid var(--light);
+                }
+            }
+        }
+        
+        .programContainer:hover{
+            box-shadow: 2px 4px 10px 1px var(--light);
+            background-color: var(--light);
+        
+            .title{
+                color: var(--dark);
+            }
+        
+            .table{
+                color: var(--dark);
+        
+                thead{
+                    border-bottom: 0.5px solid var(--dark);
+                }
+            }
+        }
     }
     
     input{
