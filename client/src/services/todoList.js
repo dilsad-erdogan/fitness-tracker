@@ -1,9 +1,9 @@
 import axios from "axios";
 const T = "http://localhost:3000/todo";
 
-const get = async () => {
+const get = async (id) => {
     try{
-        const response = await axios.get(`${T}/get`);
+        const response = await axios.get(`${T}/get/${id}`);
         return response.data;
     } catch (error){
         console.error('Error fetching todo:', error);
@@ -20,9 +20,19 @@ const add = async (list) => {
     }
 };
 
-const update = async (id, content) => {
+const updateContent = async (id, content) => {
     try{
         const response = await axios.put(`${T}/update/${id}`, content);
+        return response.data;
+    } catch (error){
+        console.error('Error updating content:', error);
+        throw error;
+    }
+};
+
+const updateDone = async (id) => {
+    try{
+        const response = await axios.put(`${T}/update/${id}`);
         return response.data;
     } catch (error){
         console.error('Error updating content:', error);
@@ -53,7 +63,8 @@ const byId = async (id) => {
 const tServices = {
     get,
     add,
-    update,
+    updateContent,
+    updateDone,
     deleted,
     byId
 };

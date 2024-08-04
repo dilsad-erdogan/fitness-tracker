@@ -14,12 +14,14 @@ import WeeklySport from "../../../components/weeklySport/WeeklySport";
 import userProgramServices from "../../../services/userProgram";
 import wServices from "../../../services/weeklyCalorie";
 import hwServices from "../../../services/heightWeight";
+import tServices from "../../../services/todoList";
 
 const UserPanel = () => {
   const [user, setUser] = useState('');
   const [calorie, setCalorie] = useState('');
   const [weight, setWeight] = useState('');
   const [name, setName] = useState('');
+  const [list, setList] = useState([]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -65,15 +67,27 @@ const UserPanel = () => {
           console.error(error);
         }
       };
+
+      const fetchList = async() => {
+        try{
+          const response = await tServices.get(id);
+          setList(response.data);
+        } catch(error) {
+          console.error(error);
+        }
+      };
   
       fetchUser();
       fetchCalorie();
       fetchWeight();
+      fetchList();
     } else {
       console.error("User not found in localStorage");
     }
   }, [localStorage.getItem('user')]);
 
+  console.log(list);
+  
   return (
     <div className='userPanel'>
       <Sidebar></Sidebar>

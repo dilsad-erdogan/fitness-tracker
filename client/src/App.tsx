@@ -16,7 +16,6 @@ import UProgram from './pages/admin/list/UProgram';
 import URole from './pages/admin/list/URole';
 import Set from './pages/admin/list/Set';
 import HeightWeight from './pages/admin/list/HeightWeight';
-import Todo from './pages/admin/list/Todo';
 import Weekly from './pages/admin/list/Weekly';
 import StatisticsA from './pages/admin/useful/Statistics';
 import Notifications from './pages/admin/useful/Notifications';
@@ -50,7 +49,6 @@ const App = () => {
           <Route path="/admin/role" element={<URole></URole>}/>
           <Route path="/admin/set" element={<Set></Set>}/>
           <Route path="/admin/hw" element={<HeightWeight></HeightWeight>}/>
-          <Route path="/admin/todo" element={<Todo></Todo>}/>
           <Route path="/admin/weekly" element={<Weekly></Weekly>}/>
           <Route path="/admin/ista" element={<StatisticsA></StatisticsA>}/>
           <Route path="/admin/noti" element={<Notifications></Notifications>}/>

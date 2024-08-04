@@ -13,6 +13,10 @@ const listSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    is_done: {
+        type: Boolean,
+        default: false
+    },
     is_active: {
         type: Boolean,
         default: true

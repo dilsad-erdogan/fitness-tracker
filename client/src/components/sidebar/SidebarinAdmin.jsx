@@ -1,7 +1,7 @@
 import './sidebar.scss';
 import { MdDomain, MdOutlineSportsGymnastics, MdOutlineSettingsAccessibility } from "react-icons/md";
 import { FaUser, FaMask } from "react-icons/fa";
-import { LuSubtitles, LuListTodo } from "react-icons/lu";
+import { LuSubtitles } from "react-icons/lu";
 import { CgGym } from "react-icons/cg";
 import { FaUserNinja } from "react-icons/fa6";
 import { RiUserSearchFill, RiNotification2Line } from "react-icons/ri";
@@ -66,11 +66,6 @@ const menuItems = [
         title: "Height Weight",
         path: "/admin/hw",
         icon: <IoIosBody></IoIosBody>
-      },
-      {
-        title: "To-do List",
-        path: "/admin/todo",
-        icon: <LuListTodo></LuListTodo>
       },
       {
         title: "Weekly Calorie",

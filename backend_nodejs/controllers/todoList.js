@@ -3,7 +3,8 @@ const User = require('../models/User');
 
 async function getTodoList(req, res) {
     try {
-        const lists = await Todolist.find();
+        const id = req.params.id;
+        const lists = await Todolist.find({ u_id: id, is_active: true });
 
         if (lists) {
             res.status(200).json({ success: true, data: lists });
@@ -29,6 +30,7 @@ async function addTodoList (req, res) {
             u_id: u_id,
             content: content,
             date_time: Date.now(),
+            is_done: false,
             is_active: true
         });
 
@@ -58,6 +60,25 @@ async function updateContent (req, res) {
         todoList.save();
 
         res.status(200).json({ success: true, message: 'Todo updated description successfully!' });
+    } catch(error) {
+        console.error(error);
+        res.status(500).json({ message: error });
+    }
+}
+
+async function updateDone (req, res) {
+    try{
+        const todo_id = req.params.id;
+
+        const todoList = await Todolist.findById(todo_id);
+        if(!todoList) {
+            return res.status(404).json({ success: false, message: 'Todo not found!' });
+        }
+
+        todoList.is_done = !todoList.is_done;
+        todoList.save();
+
+        res.status(200).json({ success: true, message: 'Todo updated successfully!' });
     } catch(error) {
         console.error(error);
         res.status(500).json({ message: error });
@@ -101,6 +122,7 @@ module.exports = {
     getTodoList,
     addTodoList,
     updateContent,
+    updateDone,
     deleteTodoList,
     getTodoById
 };
