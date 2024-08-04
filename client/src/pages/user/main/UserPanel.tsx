@@ -85,8 +85,6 @@ const UserPanel = () => {
       console.error("User not found in localStorage");
     }
   }, [localStorage.getItem('user')]);
-
-  console.log(list);
   
   return (
     <div className='userPanel'>
@@ -111,7 +109,7 @@ const UserPanel = () => {
             <div className="blocks">
               <div className="todoList">
                 <div className="todoListTitle">To-do List</div>
-                <Todolist></Todolist>
+                <Todolist list={list}></Todolist>
               </div>
 
               <div className="dailyPlan">

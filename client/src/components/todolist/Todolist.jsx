@@ -1,6 +1,7 @@
-import React from 'react'
+import './list.scss';
 
-const Todolist = () => {
+const Todolist = ({ list }) => {
+  console.log(list)
   return (
     <div>Todolist</div>
   )
