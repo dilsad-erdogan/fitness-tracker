@@ -19,6 +19,7 @@ const UserPanel = () => {
   const [user, setUser] = useState('');
   const [calorie, setCalorie] = useState('');
   const [weight, setWeight] = useState('');
+  const [name, setName] = useState('');
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -27,6 +28,7 @@ const UserPanel = () => {
       let id: string;
       try {
         id = JSON.parse(storedUser)._id;
+        setName(JSON.parse(storedUser).u_name);
       } catch (error) {
         console.error("Failed to parse user from localStorage:", error);
         return;
@@ -82,7 +84,7 @@ const UserPanel = () => {
         <div className="container">
           <div className="leftContainer">
             <div className="diaryMessage">
-              <Message></Message>
+              <Message name={name}></Message>
             </div>
 
             <div className="widgets">

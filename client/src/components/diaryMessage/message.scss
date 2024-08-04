@@ -1,0 +1,55 @@
+.messageBox {
+    position: relative;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 2px 4px 10px 1px var(--light);
+    background-color: var(--light);
+  
+    .left {
+        display: flex;
+        flex-direction: column;
+        
+        h1 {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--dark);
+        }
+    
+        p {
+            margin: 5px 0 0;
+            font-size: 1em;
+            color: var(--dark);
+        }
+    }
+  
+    .right {
+        position: absolute;
+        bottom: 80px;
+        right: 100px;
+        transform: translate(50%, 50%);
+    }
+  
+    .messageImage {
+        width: 250px;
+        height: auto;
+    }
+}  
+
+.messageBox:hover {
+    box-shadow: 2px 4px 10px 1px var(--dark);
+    background-color: var(--dark);
+  
+    .left {
+        h1 {
+            color: var(--light);
+        }
+    
+        p {
+            color: var(--light);
+        }
+    }
+}  

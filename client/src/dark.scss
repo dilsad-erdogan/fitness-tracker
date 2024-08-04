@@ -187,6 +187,36 @@
                 }
             }
         }
+
+        .messageBox {
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            background-color: var(--lightDark);
+          
+            .left {
+                h1 {
+                    color: var(--light);
+                }
+            
+                p {
+                    color: var(--light);
+                }
+            }
+        } 
+
+        .messageBox:hover {
+            box-shadow: 2px 4px 10px 1px var(--light);
+            background-color: var(--light);
+          
+            .left {
+                h1 {
+                    color: var(--dark);
+                }
+            
+                p {
+                    color: var(--dark);
+                }
+            }
+        } 
     }
     
     input{
