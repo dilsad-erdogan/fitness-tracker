@@ -1,6 +1,5 @@
 .userPanel{
     display: flex;
-    height: 100vh;
     overflow: hidden;
 
     .homeContainer{
@@ -29,19 +28,11 @@
                     .todoList{
                         flex: 5;
                         padding: 20px;
-
-                        .todoListTitle{
-                            font-weight: 500;
-                        }
                     }
 
                     .dailyPlan{
                         flex: 5;
                         padding: 20px;
-
-                        .dailyPlanTitle{
-                            font-weight: 500;
-                        }
                     }
                 }
             }

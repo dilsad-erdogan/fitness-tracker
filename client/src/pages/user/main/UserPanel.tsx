@@ -108,12 +108,10 @@ const UserPanel = () => {
 
             <div className="blocks">
               <div className="todoList">
-                <div className="todoListTitle">To-do List</div>
                 <Todolist list={list}></Todolist>
               </div>
 
               <div className="dailyPlan">
-                <div className="dailyPlanTitle">Daily Workout Plan</div>
                 <DailyPlan></DailyPlan>
               </div>
             </div>
