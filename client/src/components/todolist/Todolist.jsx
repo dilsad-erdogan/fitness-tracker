@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 
 const Todolist = ({ userid }) => {
   const [list, setList] = useState([]);
+  const [newItem, setNewitem] = useState('');
 
   const fetchList = async() => {
     try{
@@ -35,6 +36,20 @@ const Todolist = ({ userid }) => {
     }
   };
 
+  const addItem = async() => {
+    const newList = {
+      u_id: userid,
+      content: newItem
+    };
+
+    try{
+      await tServices.add(newList);
+      fetchList();
+    } catch(error){
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchList();
   });
@@ -47,8 +62,8 @@ const Todolist = ({ userid }) => {
       </div>
 
       <div className='inputBlock flex items-center my-7 rounded-full'>
-        <input className='bg-transparent border-0 outline-none flex-1 h-14 pl-6 pr-2' placeholder='Add a new task...'></input>
-        <button className='border-none rounded-full w-32 h-14 text-lg font-medium cursor-pointer'>ADD+</button>
+        <input className='bg-transparent border-0 outline-none flex-1 h-14 pl-6 pr-2' placeholder='Add a new task...' value={newItem} onChange={(e) => {setNewitem(e.target.value)}}></input>
+        <button className='border-none rounded-full w-32 h-14 text-lg font-medium cursor-pointer' onClick={() => {addItem(newItem)}}>ADD+</button>
       </div>
 
       <div className='list'>
