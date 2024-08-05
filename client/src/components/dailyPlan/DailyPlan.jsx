@@ -1,8 +1,10 @@
-import React from 'react'
+import './dailyplan.scss';
 
 const DailyPlan = () => {
   return (
-    <div>DailyPlan</div>
+    <div className='dailyplan flex flex-col p-7 min-h-[500px] rounded-[20px]'>
+      <div className="title">DailyPlan</div>
+    </div>
   )
 }
 

@@ -1,0 +1,22 @@
+.dailyplan{
+    box-shadow: 2px 4px 10px 1px var(--light);
+    background-color: var(--light);
+
+    .title{
+        font-weight: bold;
+        font-size: 20px;
+        color: var(--dark);
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.dailyplan:hover{
+    box-shadow: 2px 4px 10px 1px var(--dark);
+    background-color: var(--dark);
+
+    .title{
+        color: var(--light);
+    }
+}
