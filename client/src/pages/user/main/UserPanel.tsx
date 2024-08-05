@@ -14,14 +14,13 @@ import WeeklySport from "../../../components/weeklySport/WeeklySport";
 import userProgramServices from "../../../services/userProgram";
 import wServices from "../../../services/weeklyCalorie";
 import hwServices from "../../../services/heightWeight";
-import tServices from "../../../services/todoList";
 
 const UserPanel = () => {
   const [user, setUser] = useState('');
   const [calorie, setCalorie] = useState('');
   const [weight, setWeight] = useState('');
   const [name, setName] = useState('');
-  const [list, setList] = useState([]);
+  const [userid, setUserid] = useState('');
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -30,6 +29,7 @@ const UserPanel = () => {
       let id: string;
       try {
         id = JSON.parse(storedUser)._id;
+        setUserid(id);
         setName(JSON.parse(storedUser).u_name);
       } catch (error) {
         console.error("Failed to parse user from localStorage:", error);
@@ -67,20 +67,10 @@ const UserPanel = () => {
           console.error(error);
         }
       };
-
-      const fetchList = async() => {
-        try{
-          const response = await tServices.get(id);
-          setList(response.data);
-        } catch(error) {
-          console.error(error);
-        }
-      };
   
       fetchUser();
       fetchCalorie();
       fetchWeight();
-      fetchList();
     } else {
       console.error("User not found in localStorage");
     }
@@ -108,7 +98,7 @@ const UserPanel = () => {
 
             <div className="blocks">
               <div className="todoList">
-                <Todolist list={list}></Todolist>
+                <Todolist userid={userid}></Todolist>
               </div>
 
               <div className="dailyPlan">

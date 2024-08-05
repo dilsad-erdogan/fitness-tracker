@@ -22,7 +22,7 @@ const add = async (list) => {
 
 const updateContent = async (id, content) => {
     try{
-        const response = await axios.put(`${T}/update/${id}`, content);
+        const response = await axios.put(`${T}/updateContent/${id}`, content);
         return response.data;
     } catch (error){
         console.error('Error updating content:', error);
@@ -32,7 +32,7 @@ const updateContent = async (id, content) => {
 
 const updateDone = async (id) => {
     try{
-        const response = await axios.put(`${T}/update/${id}`);
+        const response = await axios.put(`${T}/updateDone/${id}`);
         return response.data;
     } catch (error){
         console.error('Error updating content:', error);

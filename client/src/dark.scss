@@ -217,6 +217,38 @@
                 }
             }
         } 
+
+        .todolist{
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            background-color: var(--lightDark);
+        
+            .title{
+                color: var(--light);
+            }
+        
+            .inputBlock{
+                background-color: var(--light);
+        
+                input {
+                    color: var(--dark);
+
+                    &::placeholder {
+                      color: var(--dark);
+                    }
+                }
+        
+                button{
+                    background-color: var(--dark);
+                    color: var(--veryLight);
+                }
+            }
+
+            .list{
+                .item{
+                    color: var(--veryLight);
+                }
+            }
+        }
     }
     
     input{

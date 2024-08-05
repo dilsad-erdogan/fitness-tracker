@@ -1,0 +1,39 @@
+.todolist{
+    box-shadow: 2px 4px 10px 1px var(--light);
+    background-color: var(--light);
+
+    .title{
+        font-weight: bold;
+        font-size: 20px;
+        color: var(--dark);
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .inputBlock{
+        background-color: var(--lightDark);
+
+        input {
+            color: var(--veryLight);
+            font-style: italic;
+            
+            &::placeholder {
+              color: var(--veryLight);
+              font-style: italic;
+            }
+        }
+
+        button{
+            background-color: var(--dark);
+            color: var(--veryLight);
+        }
+    }
+
+    .list{
+        .item{
+            color: var(--dark);
+        }
+    }
+}
