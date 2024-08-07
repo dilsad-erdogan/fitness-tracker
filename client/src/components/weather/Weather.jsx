@@ -1,8 +1,8 @@
-import React from 'react'
+import './weather.scss';
 
 const Weather = () => {
   return (
-    <div>Weather</div>
+    <div className='weather'>Weather</div>
   )
 }
 
