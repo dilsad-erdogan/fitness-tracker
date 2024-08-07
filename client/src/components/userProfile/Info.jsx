@@ -1,8 +1,8 @@
-import React from 'react'
+import './profile.scss';
 
 const Info = ({ type }) => {
   return (
-    <div>
+    <div className='info'>
       {type}
     </div>
   )
