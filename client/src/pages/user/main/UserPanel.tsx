@@ -21,6 +21,7 @@ const UserPanel = () => {
   const [weight, setWeight] = useState('');
   const [name, setName] = useState('');
   const [userid, setUserid] = useState('');
+  const [program, setProgram] = useState([]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -41,6 +42,15 @@ const UserPanel = () => {
           const response = await userProgramServices.total(id);
           setUser(response.data);
         } catch (error) {
+          console.error(error);
+        }
+      };
+
+      const fetchUProgram = async() => {
+        try{
+          const response = await userProgramServices.get(id);
+          setProgram(response.data);
+        } catch (error){
           console.error(error);
         }
       };
@@ -69,6 +79,7 @@ const UserPanel = () => {
       };
   
       fetchUser();
+      fetchUProgram();
       fetchCalorie();
       fetchWeight();
     } else {
@@ -102,7 +113,7 @@ const UserPanel = () => {
               </div>
 
               <div className="dailyPlan">
-                <DailyPlan></DailyPlan>
+                <DailyPlan programs={program}></DailyPlan>
               </div>
             </div>
           </div>

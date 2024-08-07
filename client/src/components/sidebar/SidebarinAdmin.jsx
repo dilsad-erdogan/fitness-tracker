@@ -3,7 +3,6 @@ import { MdDomain, MdOutlineSportsGymnastics, MdOutlineSettingsAccessibility } f
 import { FaUser, FaMask } from "react-icons/fa";
 import { LuSubtitles } from "react-icons/lu";
 import { CgGym } from "react-icons/cg";
-import { FaUserNinja } from "react-icons/fa6";
 import { RiUserSearchFill, RiNotification2Line } from "react-icons/ri";
 import { IoIosBody } from "react-icons/io";
 import { SlCalender, SlGraph } from "react-icons/sl";
@@ -46,11 +45,6 @@ const menuItems = [
         title: "Program",
         path: "/admin/program",
         icon: <CgGym></CgGym>
-      },
-      {
-        title: "User Program",
-        path: "/admin/userProgram",
-        icon: <FaUserNinja></FaUserNinja>
       },
       {
         title: "User Role",

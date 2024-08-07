@@ -249,6 +249,27 @@
                 }
             }
         }
+
+        .dailyplan{
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            background-color: var(--lightDark);
+        
+            .title{
+                color: var(--light);
+            }
+        
+            .programs{        
+                .program{
+                    color: var(--light);
+                    box-shadow: 2px 4px 10px 1px var(--dark);
+                    background-color: var(--dark);
+        
+                    .title{
+                        color: var(--light);
+                    }           
+                }
+            }
+        }
     }
     
     input{

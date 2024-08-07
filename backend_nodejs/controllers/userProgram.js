@@ -3,7 +3,8 @@ const User = require('../models/User');
 
 async function getUserProgram (req, res) {
     try{
-        const userProgram = await UserProgram.find();
+        const id = req.params.id;
+        const userProgram = await UserProgram.find({ up_uid: id, is_active: true });
 
         if(userProgram) {
             res.status(200).json({ success: true, data: userProgram })

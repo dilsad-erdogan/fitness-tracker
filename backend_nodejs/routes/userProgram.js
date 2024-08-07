@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getUserProgram, addUserProgram, updateName, updateDescription, updateDuration, updateTime, deleteUserProgram, getUserProgramById, total, totalAll } = require('../controllers/userProgram');
 
-router.route('/get').get(getUserProgram);
+router.route('/get/:id').get(getUserProgram);
 router.route('/add').post(addUserProgram);
 router.route('/updateName/:id').put(updateName);
 router.route('/updateDescription/:id').put(updateDescription);

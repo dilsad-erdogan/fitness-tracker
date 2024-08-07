@@ -1,9 +1,9 @@
 import axios from 'axios';
 const UP = "http://localhost:3000/userProgram";
 
-const get = async () => {
+const get = async (id) => {
     try{
-        const response = await axios.get(`${UP}/get`);
+        const response = await axios.get(`${UP}/get/${id}`);
         return response.data;
     } catch (error){
         console.error('Error fetching user program:', error);

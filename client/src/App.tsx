@@ -12,7 +12,6 @@ import Users from './pages/admin/list/Users';
 import Movements from './pages/admin/list/Movements';
 import MTitles from './pages/admin/list/MTitles';
 import Program from './pages/admin/list/Program';
-import UProgram from './pages/admin/list/UProgram';
 import URole from './pages/admin/list/URole';
 import Set from './pages/admin/list/Set';
 import HeightWeight from './pages/admin/list/HeightWeight';
@@ -45,7 +44,6 @@ const App = () => {
           <Route path="/admin/movement" element={<Movements></Movements>}/>
           <Route path="/admin/title" element={<MTitles></MTitles>}/>
           <Route path="/admin/program" element={<Program></Program>}/>
-          <Route path="/admin/userProgram" element={<UProgram></UProgram>}/>
           <Route path="/admin/role" element={<URole></URole>}/>
           <Route path="/admin/set" element={<Set></Set>}/>
           <Route path="/admin/hw" element={<HeightWeight></HeightWeight>}/>
