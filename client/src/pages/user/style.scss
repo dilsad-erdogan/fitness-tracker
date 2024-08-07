@@ -41,23 +41,23 @@
                 flex: 2;
 
                 .weather{
-                    padding: 20px;
+                    padding: 10px;
                 }
 
                 .userProfile{
                     .profile{
-                        padding: 20px;
+                        padding: 10px;
                     }
 
                     .info{
+                        padding: 10px;
                         display: flex;
-                        padding: 5px;
-                        gap: 5px;
+                        justify-content: space-between;
                     }
                 }
 
                 .weeklySports{
-                    padding: 20px;
+                    padding: 10px;
                 }
             }
         }

@@ -2,7 +2,7 @@ import './weather.scss';
 
 const Weather = () => {
   return (
-    <div className='weather'>Weather</div>
+    <div className='weatherContainer'>Weather</div>
   )
 }
 

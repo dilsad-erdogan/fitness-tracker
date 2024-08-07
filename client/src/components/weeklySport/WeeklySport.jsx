@@ -2,7 +2,7 @@ import './weekly.scss';
 
 const WeeklySport = () => {
   return (
-    <div className='weekly'>WeeklySport</div>
+    <div className='weeklyContainer'>WeeklySport</div>
   )
 }
 
