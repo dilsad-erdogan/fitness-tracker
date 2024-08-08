@@ -4,4 +4,17 @@
     box-shadow: 2px 4px 10px 1px var(--light);
     background-color: var(--light);
     color: var(--dark);
+
+    .title{
+        font-weight: bold;
+        font-size: 18px;
+        color: var(--dark);
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    .chartGrid {
+        stroke: transparent;
+    }
 }

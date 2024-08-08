@@ -23,6 +23,7 @@ const UserPanel = () => {
   const [email, setEmail] = useState('');
   const [userid, setUserid] = useState('');
   const [program, setProgram] = useState([]);
+  const [allCalorie, setAllcalorie] = useState([]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -60,6 +61,7 @@ const UserPanel = () => {
       const fetchCalorie = async() => {
         try{
           const response = await wServices.byId(id);
+          setAllcalorie(response.data);
           const currentDayIndex = new Date().getDay();
           const dayMap = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
           
@@ -140,7 +142,7 @@ const UserPanel = () => {
             </div>
 
             <div className="weeklySports">
-              <WeeklySport></WeeklySport>
+              <WeeklySport calories={allCalorie}></WeeklySport>
             </div>
           </div>
         </div>
