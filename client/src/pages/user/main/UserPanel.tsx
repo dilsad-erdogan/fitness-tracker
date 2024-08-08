@@ -133,12 +133,12 @@ const UserPanel = () => {
           </div>
 
           <div className="rightContainer">
-            <div className="weather">
-              <Weather></Weather>
-            </div>
-
             <div className="profile">
               <Profile name={name} email={email} weight={weight} height={height}></Profile>
+            </div>
+
+            <div className="weather">
+              <Weather></Weather>
             </div>
 
             <div className="weeklySports">
