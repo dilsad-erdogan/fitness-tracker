@@ -8,7 +8,6 @@ import Todolist from "../../../components/todolist/Todolist";
 import DailyPlan from "../../../components/dailyPlan/DailyPlan";
 import Weather from "../../../components/weather/Weather";
 import Profile from "../../../components/userProfile/Profile";
-import Info from "../../../components/userProfile/Info";
 import WeeklySport from "../../../components/weeklySport/WeeklySport";
 
 import userProgramServices from "../../../services/userProgram";
@@ -19,7 +18,9 @@ const UserPanel = () => {
   const [user, setUser] = useState('');
   const [calorie, setCalorie] = useState('');
   const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [userid, setUserid] = useState('');
   const [program, setProgram] = useState([]);
 
@@ -32,6 +33,7 @@ const UserPanel = () => {
         id = JSON.parse(storedUser)._id;
         setUserid(id);
         setName(JSON.parse(storedUser).u_name);
+        setEmail(JSON.parse(storedUser).u_email);
       } catch (error) {
         console.error("Failed to parse user from localStorage:", error);
         return;
@@ -78,10 +80,20 @@ const UserPanel = () => {
         }
       };
   
+      const fetchHeight = async() => {
+        try{
+          const response = await hwServices.byId(id);
+          setHeight(response.data.height);
+        } catch(error) {
+          console.error(error);
+        }
+      };
+
       fetchUser();
       fetchUProgram();
       fetchCalorie();
       fetchWeight();
+      fetchHeight();
     } else {
       console.error("User not found in localStorage");
     }
@@ -123,16 +135,8 @@ const UserPanel = () => {
               <Weather></Weather>
             </div>
 
-            <div className="userProfile">
-              <div className="profile">
-                <Profile></Profile>
-              </div>
-              
-              <div className="info">
-                <Info type="boy"></Info>
-                <Info type="kilo"></Info>
-                <Info type="hedef"></Info>
-              </div>
+            <div className="profile">
+              <Profile name={name} email={email} weight={weight} height={height}></Profile>
             </div>
 
             <div className="weeklySports">
