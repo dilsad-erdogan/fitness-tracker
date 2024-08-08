@@ -270,6 +270,83 @@
                 }
             }
         }
+
+        .weatherContainer{
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            background-color: var(--lightDark);
+            color: var(--light);
+        
+            .top-bar {
+                border: 0.5px solid var(--light);
+                color: var(--light);
+            }
+        
+            .center{
+                .right{
+                    .temp{
+                        color: var(--light);
+                    }
+        
+                    .location{
+                        color: var(--light);
+                    }
+                }
+            }
+            
+            .data-container{
+                color: var(--light);
+            }
+        }
+
+        .profileContainer{
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            background-color: var(--lightDark);
+            color: var(--light);
+        
+            .circular{        
+                .circle{
+                    .CircularProgressbar-path{
+                        stroke: var(--light);
+                    }
+        
+                    .CircularProgressbar-trail {
+                        stroke: var(--lightDark);
+                    }
+                }
+            }
+        
+            .content{        
+                h1 {
+                    color: var(--light);
+                }
+            
+                p {
+                    color: var(--light);
+                }
+            }
+        
+            .info{
+                .infoContainer{
+                    h1 {
+                        color: var(--light);
+                    }
+                
+                    p {
+                        color: var(--light);
+                    }
+                }
+            }
+        }
+
+        .weeklyContainer{
+            box-shadow: 2px 4px 10px 1px var(--lightDark);
+            background-color: var(--lightDark);
+            color: var(--light);
+
+            .title{
+                color: var(--light);
+            }
+        }
     }
     
     input{
