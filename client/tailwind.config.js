@@ -1,9 +1,11 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // İçeriği izlenecek dosya uzantıları
-  ],
+  purge: ['./src/**/*.{js,jsx,ts,tsx,html}', './public/index.html'],
+  darkMode: 'class', // veya 'media' olarak ayarlayın
   theme: {
+    extend: {},
+  },
+  variants: {
     extend: {},
   },
   plugins: [],

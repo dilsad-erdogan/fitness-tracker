@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 async function getHeightWeight (req, res) {
     try{
-        const hw = await HeightWeight.find();
+        const hw = await HeightWeight.find({ is_active: true });
 
         if(hw) {
             res.status(200).json({ success: true, data: hw })
