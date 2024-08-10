@@ -25,6 +25,15 @@ const Movements = () => {
     }
   };
 
+  const deleted = async (id) => {
+    try{
+      await mServices.deleted(id);
+      fetchM();
+    } catch(error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchM();
   }, []);
@@ -64,7 +73,7 @@ const Movements = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{data.calorie}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                           <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none">Edit</button>
-                          <button type="button" className="ml-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none">Delete</button>
+                          <button type="button" className="ml-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => {deleted(data._id)}}>Delete</button>
                         </td>
                       </tr>
                     ))}
