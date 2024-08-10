@@ -1,11 +1,14 @@
 import '../style.scss';
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import Sidebar from '../../../components/sidebar/SidebarinAdmin';
 import Navbar from '../../../components/navbar/Navbar';
 import urServices from '../../../services/userRole';
+import Modal from '../../../components/modals/userRole';
 
 const URole = () => {
   const [datas, setDatas] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentRole, setCurrentRole] = useState({});
 
   const fetchUR = async() => {
     try{
@@ -25,16 +28,31 @@ const URole = () => {
     }
   };
 
+  const handleEdit = (role) => {
+    setCurrentRole(role);
+    setIsModalOpen(true);
+    fetchUR();
+  };
+
+  const handleSave = async () => {
+    try {
+      await urServices.update(currentRole._id, currentRole);
+      fetchUR();
+    } catch (error) {
+      console.error('Error updating user role:', error);
+    }
+  };
+
   useEffect(() => {
     fetchUR();
   }, []);
 
   return (
     <div className='adminPanel'>
-      <Sidebar></Sidebar>
+      <Sidebar />
 
       <div className='homeContainer'>
-        <Navbar></Navbar>
+        <Navbar />
 
         <div className="flex flex-col mt-5">
           <div className="-m-1.5 overflow-x-auto">
@@ -53,7 +71,7 @@ const URole = () => {
                       <tr className="text-[#405D72] hover:text-[#F7E7DC] hover:bg-[#405D72] dark:text-[#F7E7DC] dark:hover:text-[#405D72] dark:hover:bg-[#F7E7DC]" key={data._id}>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{data.r_name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none">Edit</button>
+                          <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => handleEdit(data)}>Edit</button>
                           <button type="button" className="ml-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => {deleted(data._id)}}>Delete</button>
                         </td>
                       </tr>
@@ -65,8 +83,10 @@ const URole = () => {
           </div>
         </div>
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSave={handleSave} data={currentRole} setData={setCurrentRole}></Modal>
     </div>
   )
 }
 
-export default URole
+export default URole;

@@ -4,10 +4,13 @@ import Sidebar from '../../../components/sidebar/SidebarinAdmin';
 import Navbar from '../../../components/navbar/Navbar';
 import mServices from '../../../services/movement';
 import mtServices from '../../../services/movementTitle';
+import Modal from '../../../components/modals/movement';
 
 const Movements = () => {
   const [datas, setDatas] = useState([]);
   const [title, setTitle] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentRole, setCurrentRole] = useState({});
 
   const fetchM = async() => {
     try{
@@ -31,6 +34,57 @@ const Movements = () => {
       fetchM();
     } catch(error) {
       console.error(error);
+    }
+  };
+
+  const handleEdit = (role) => {
+    setCurrentRole(role);
+    setIsModalOpen(true);
+    fetchM();
+  };
+
+  const handleSaveName = async () => {
+    try {
+      await mServices.updateName(currentRole._id, { m_name: currentRole.m_name });
+      fetchM();
+    } catch (error) {
+      console.error('Error updating name:', error);
+    }
+  };
+
+  const handleSaveDescription = async () => {
+    try {
+      await mServices.updateDescription(currentRole._id, { m_description: currentRole.m_description });
+      fetchM();
+    } catch (error) {
+      console.error('Error updating name:', error);
+    }
+  };
+
+  const handleSavePhoto = async () => {
+    try {
+      await mServices.updatePhoto(currentRole._id, { m_photo: currentRole.m_photo });
+      fetchM();
+    } catch (error) {
+      console.error('Error updating name:', error);
+    }
+  };
+
+  const handleSaveVideo = async () => {
+    try {
+      await mServices.updateVideo(currentRole._id, { m_video: currentRole.m_video });
+      fetchM();
+    } catch (error) {
+      console.error('Error updating name:', error);
+    }
+  };
+
+  const handleSaveCalorie = async () => {
+    try {
+      await mServices.updateCalorie(currentRole._id, { calorie: currentRole.calorie });
+      fetchM();
+    } catch (error) {
+      console.error('Error updating name:', error);
     }
   };
 
@@ -72,7 +126,7 @@ const Movements = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{data.m_video}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{data.calorie}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none">Edit</button>
+                          <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => handleEdit(data)}>Edit</button>
                           <button type="button" className="ml-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => {deleted(data._id)}}>Delete</button>
                         </td>
                       </tr>
@@ -84,6 +138,18 @@ const Movements = () => {
           </div>
         </div>
       </div>
+
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        data={currentRole}
+        setData={setCurrentRole}
+        onSaveName={handleSaveName}
+        onSaveDescription={handleSaveDescription}
+        onSavePhoto={handleSavePhoto}
+        onSaveVideo = {handleSaveVideo}
+        onSaveCalorie = {handleSaveCalorie}
+      />
     </div>
   )
 }

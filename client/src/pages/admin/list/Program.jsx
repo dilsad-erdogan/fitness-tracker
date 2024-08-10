@@ -3,9 +3,12 @@ import { useEffect, useState } from "react"
 import Sidebar from '../../../components/sidebar/SidebarinAdmin';
 import Navbar from '../../../components/navbar/Navbar';
 import pServices from '../../../services/program';
+import Modal from '../../../components/modals/program';
 
 const Program = () => {
   const [datas, setDatas] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentRole, setCurrentRole] = useState({});
 
   const fetchP = async() => {
     try{
@@ -22,6 +25,48 @@ const Program = () => {
       fetchP();
     } catch(error) {
       console.error(error);
+    }
+  };
+
+  const handleEdit = (role) => {
+    setCurrentRole(role);
+    setIsModalOpen(true);
+    fetchP();
+  };
+
+  const handleSaveName = async () => {
+    try {
+      await pServices.updateName(currentRole._id, { p_name: currentRole.p_name });
+      fetchP();
+    } catch (error) {
+      console.error('Error updating name:', error);
+    }
+  };
+
+  const handleSaveDescription = async () => {
+    try {
+      await pServices.updateDescription(currentRole._id, { p_description: currentRole.p_description });
+      fetchP();
+    } catch (error) {
+      console.error('Error updating descripton:', error);
+    }
+  };
+
+  const handleSaveDuration = async () => {
+    try {
+      await pServices.updateDuration(currentRole._id, { duration: currentRole.duration });
+      fetchP();
+    } catch (error) {
+      console.error('Error updating duration:', error);
+    }
+  };
+
+  const handleSaveTime = async () => {
+    try {
+      await pServices.updateTime(currentRole._id, { time: currentRole.time });
+      fetchP();
+    } catch (error) {
+      console.error('Error updating time:', error);
     }
   };
 
@@ -59,7 +104,7 @@ const Program = () => {
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{data.duration}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{data.time}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none">Edit</button>
+                          <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => handleEdit(data)}>Edit</button>
                           <button type="button" className="ml-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => {deleted(data._id)}}>Delete</button>
                         </td>
                       </tr>
@@ -71,6 +116,17 @@ const Program = () => {
           </div>
         </div>
       </div>
+
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        data={currentRole}
+        setData={setCurrentRole}
+        onSaveName={handleSaveName}
+        onSaveDescription={handleSaveDescription}
+        onSaveDuration={handleSaveDuration}
+        onSaveTime = {handleSaveTime}
+      />
     </div>
   )
 }

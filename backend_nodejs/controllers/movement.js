@@ -49,6 +49,26 @@ async function addMovement (req, res) {
     }
 }
 
+async function updateName (req, res) {
+    try{
+        const m_id = req.params.id;
+        const { m_name } = req.body;
+
+        const movement = await Movement.findById(m_id);
+        if(!movement) {
+            return res.status(404).json({ success: false, message: 'Movement name not found!' });
+        }
+
+        movement.m_name = m_name;
+        movement.save();
+
+        res.status(200).json({ success: true, message: 'Movement updated name successfully' });
+    } catch(error) {
+        console.error(error);
+        res.status(500).json({ message: error });
+    }
+}
+
 async function updateDescription (req, res) {
     try{
         const m_id = req.params.id;
@@ -180,6 +200,7 @@ async function total (req, res) {
 module.exports = {
     getMovement,
     addMovement,
+    updateName,
     updateDescription,
     updatePhoto,
     updateVideo,

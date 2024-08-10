@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { getMovement, addMovement, updateDescription, updatePhoto, updateVideo, updateCalorie, deleteMovement, getMovementById, total } = require('../controllers/movement');
+const { getMovement, addMovement, updateName, updateDescription, updatePhoto, updateVideo, updateCalorie, deleteMovement, getMovementById, total } = require('../controllers/movement');
 
 router.route('/get').get(getMovement);
 router.route('/add').post(addMovement);
+router.route('/updateName/:id').put(updateName);
 router.route('/updateDescription/:id').put(updateDescription);
 router.route('/updatePhoto/:id').put(updatePhoto);
 router.route('/updateVideo/:id').put(updateVideo);

@@ -3,9 +3,12 @@ import { useEffect, useState } from "react"
 import Sidebar from '../../../components/sidebar/SidebarinAdmin';
 import Navbar from '../../../components/navbar/Navbar';
 import mtServices from '../../../services/movementTitle';
+import Modal from '../../../components/modals/mTitle';
 
 const MTitles = () => {
   const [datas, setDatas] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentRole, setCurrentRole] = useState({});
 
   const fetchMT = async() => {
     try{
@@ -22,6 +25,21 @@ const MTitles = () => {
       fetchMT();
     } catch(error) {
       console.error(error);
+    }
+  };
+
+  const handleEdit = (name) => {
+    setCurrentRole(name);
+    setIsModalOpen(true);
+    fetchMT();
+  };
+
+  const handleSave = async () => {
+    try {
+      await mtServices.update(currentRole._id, currentRole);
+      fetchMT();
+    } catch (error) {
+      console.error('Error updating user role:', error);
     }
   };
 
@@ -53,7 +71,7 @@ const MTitles = () => {
                       <tr className="text-[#405D72] hover:text-[#F7E7DC] hover:bg-[#405D72] dark:text-[#F7E7DC] dark:hover:text-[#405D72] dark:hover:bg-[#F7E7DC]" key={data._id}>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">{data.t_name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                          <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none">Edit</button>
+                          <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => handleEdit(data)}>Edit</button>
                           <button type="button" className="ml-2 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent focus:outline-none disabled:opacity-50 disabled:pointer-events-none" onClick={() => {deleted(data._id)}}>Delete</button>
                         </td>
                       </tr>
@@ -65,6 +83,8 @@ const MTitles = () => {
           </div>
         </div>
       </div>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSave={handleSave} data={currentRole} setData={setCurrentRole}></Modal>
     </div>
   )
 }
