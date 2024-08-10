@@ -2,7 +2,7 @@ const UserRole = require('../models/UserRole');
 
 async function getUserRole (req, res) {
     try{
-        const ur = await UserRole.find();
+        const ur = await UserRole.find({ is_active: true });
 
         if(ur) {
             res.status(200).json({ success: true, data: ur })

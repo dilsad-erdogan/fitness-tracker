@@ -3,7 +3,7 @@ const MovemetTitle = require('../models/MovementTitle');
 
 async function getMovement (req, res) {
     try{
-        const movements = await Movement.find();
+        const movements = await Movement.find({ is_active: true });
 
         if(movements) {
             res.status(200).json({ success: true, data: movements })

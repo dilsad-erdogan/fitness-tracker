@@ -2,7 +2,7 @@ const Program = require('../models/Program');
 
 async function getProgram (req, res) {
     try{
-        const program = await Program.find();
+        const program = await Program.find({ is_active: true });
 
         if(program) {
             res.status(200).json({ success: true, data: program })

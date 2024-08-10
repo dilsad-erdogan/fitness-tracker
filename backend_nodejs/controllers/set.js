@@ -4,7 +4,7 @@ const Movement = require('../models/Movement');
 
 async function getSet (req, res) {
     try{
-        const sets = await Set.find();
+        const sets = await Set.find({ is_active: true });
 
         if(sets) {
             res.status(200).json({ success: true, data: sets })

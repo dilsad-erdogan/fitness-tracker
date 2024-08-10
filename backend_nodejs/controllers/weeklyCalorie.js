@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 async function getWeekly(req, res){
     try{
-        const calories = await WeeklyCalorie.find();
+        const calories = await WeeklyCalorie.find({ is_active: true });
 
         if(calories){
             res.status(200).json({ success: true, data: calories });
