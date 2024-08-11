@@ -3,11 +3,13 @@ import { useEffect, useState } from "react"
 import Sidebar from '../../../components/sidebar/SidebarinAdmin';
 import Navbar from '../../../components/navbar/Navbar';
 import mtServices from '../../../services/movementTitle';
-import Modal from '../../../components/modals/mTitle';
+import Modal from '../../../components/modals/update/mTitle';
+import AddModal from '../../../components/modals/add/mTitle';
 
 const MTitles = () => {
   const [datas, setDatas] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [currentRole, setCurrentRole] = useState({});
 
   const fetchMT = async() => {
@@ -31,6 +33,11 @@ const MTitles = () => {
   const handleEdit = (name) => {
     setCurrentRole(name);
     setIsModalOpen(true);
+    fetchMT();
+  };
+
+  const handleAdd = async () => {
+    setIsAddModalOpen(true);
     fetchMT();
   };
 
@@ -78,13 +85,29 @@ const MTitles = () => {
                     ))}
                   </tbody>
                 </table>
+
+                <div className="flex justify-end mt-4">
+                  <button type="button" className="inline-flex items-center gap-x-2 text-sm font-semibold text-[#F7E7DC] bg-[#405D72] rounded-lg px-4 py-2 dark:text-[#405D72] dark:bg-[#F7E7DC] focus:outline-none" onClick={handleAdd}>Add</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onSave={handleSave} data={currentRole} setData={setCurrentRole}></Modal>
+      <Modal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onSave={handleSave} 
+        data={currentRole} 
+        setData={setCurrentRole}
+      />
+
+      <AddModal 
+        isOpen={isAddModalOpen} 
+        onClose={() => setIsAddModalOpen(false)}
+        fetch={fetchMT}
+      />
     </div>
   )
 }
