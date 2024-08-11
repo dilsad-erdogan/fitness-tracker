@@ -16,6 +16,10 @@
         }
     
         ul {
+            .title{
+                color: var(--lightDark);
+            }
+
             li {
                 li:hover {
                     background-color: var(--lightDark);
