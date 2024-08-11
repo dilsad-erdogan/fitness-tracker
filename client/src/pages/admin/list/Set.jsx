@@ -5,11 +5,13 @@ import Navbar from '../../../components/navbar/Navbar';
 import sServices from '../../../services/set';
 import pServices from '../../../services/program';
 import mServices from '../../../services/movement';
+import AddModal from '../../../components/modals/add/set';
 
 const Set = () => {
   const [datas, setDatas] = useState([]);
   const [pName, setPName] = useState({});
   const [mName, setMName] = useState({});
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const fetchS = async() => {
     try{
@@ -40,6 +42,11 @@ const Set = () => {
     } catch(error) {
       console.error(error);
     }
+  };
+
+  const handleAdd = async () => {
+    setIsAddModalOpen(true);
+    fetchS();
   };
 
   useEffect(() => {
@@ -78,11 +85,23 @@ const Set = () => {
                     ))}
                   </tbody>
                 </table>
+
+                <div className="flex justify-end mt-4">
+                  <button type="button" className="inline-flex items-center gap-x-2 text-sm font-semibold text-[#F7E7DC] bg-[#405D72] rounded-lg px-4 py-2 dark:text-[#405D72] dark:bg-[#F7E7DC] focus:outline-none" onClick={handleAdd}>Add</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <AddModal 
+        isOpen={isAddModalOpen} 
+        onClose={() => setIsAddModalOpen(false)}
+        fetch={fetchS}
+        pName={pName}
+        mName={mName}
+      />
     </div>
   )
 }
