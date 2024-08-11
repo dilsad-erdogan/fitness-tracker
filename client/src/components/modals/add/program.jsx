@@ -36,7 +36,7 @@ const AddModal = ({ isOpen, onClose, fetch }) => {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-[#FFF8F3] bg-opacity-50">
             <div className="bg-[#FFF8F3] p-6 rounded-lg w-1/3">
-                <h2 className="text-xl font-semibold mb-4 text-[#405D72]">Add New Movement</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#405D72]">Add New Program</h2>
 
                 {/* Name Section */}
                 <div className="mb-4">
