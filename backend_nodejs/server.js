@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const PORT = process.env.PORT || 3000;
-
 require('dotenv').config();
+const logger = require('./logger');
+
 var connectDB = require('./config/mongoDB');
 connectDB();
 
@@ -13,6 +14,12 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
+
+// Request loglaması için bir middleware ekle
+app.use((req, res, next) => {
+    logger.info(`${req.method} ${req.url} - ${req.ip}`);
+    next();
+});
 
 app.use('/auth', require('./routes/auth'));
 app.use('/heightWeight', require('./routes/heightWeight'));

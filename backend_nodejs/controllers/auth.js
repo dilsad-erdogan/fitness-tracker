@@ -4,6 +4,7 @@ const sendToken = require('../utils/sendToken');
 const sendEmail = require('../utils/sendEmail');
 const bcrypt = require('bcrypt');
 const rateLimit = require('express-rate-limit');
+const logger = require('../logger');
 
 const generate2FACode = () => {
     return Math.floor(100000 + Math.random() * 900000).toString(); // 6 haneli bir kod üretir
@@ -30,15 +31,18 @@ const register = catchAsyncError(async (req, res) => {
     const { u_role, u_name, u_email, u_password } = req.body;
 
     if (!u_role || !u_name || !u_email || !u_password) {
+        logger.warn(`Registration attempt failed: Missing fields - Email: ${u_email}`);
         return res.status(400).json({ success: false, error: 'All fields are required!' });
     }
 
     const existingUser = await User.findOne({ u_email });
     if (existingUser) {
+        logger.warn(`Registration attempt failed: Email already taken - Email: ${u_email}`);
         return res.status(400).json({ success: false, error: 'This email is already taken. Try again please!' });
     }
 
     const user = await User.create({ u_role, u_name, u_email, u_password, is_active: true });
+    logger.info(`New user registered: Email: ${u_email}, Name: ${u_name}, Role: ${u_role}`);
     sendToken(user, 201, res, 'Account created successfully!');
 });
 
@@ -46,6 +50,7 @@ const loginOrigin = catchAsyncError(async (req, res) => {
     const { u_email, u_password } = req.body;
 
     if (!u_email || !u_password) {
+        logger.warn(`Login attempt failed: Missing fields - Email: ${u_email}`);
         return res.status(400).json({ success: false, error: 'Please enter the email and password fields.' });
     }
 
@@ -53,6 +58,7 @@ const loginOrigin = catchAsyncError(async (req, res) => {
         const user = await User.findOne({ u_email });
 
         if (!user) {
+            logger.warn(`Login attempt failed: Invalid email - Email: ${u_email}`);
             return res.status(400).json({ success: false, error: 'Invalid email or password.' });
         }
 
@@ -61,8 +67,10 @@ const loginOrigin = catchAsyncError(async (req, res) => {
             user.loginAttempts += 1;
             if (user.loginAttempts >= 5) {
                 user.lockUntil = Date.now() + 15 * 60 * 1000; // 15 dakika kilitle
+                logger.warn(`Account locked due to multiple failed login attempts - Email: ${u_email}`);
             }
             await user.save();
+            logger.warn(`Login attempt failed: Incorrect password - Email: ${u_email}`);
             return res.status(400).json({ success: false, error: 'Invalid email or password.' });
         }
 
@@ -72,9 +80,10 @@ const loginOrigin = catchAsyncError(async (req, res) => {
             await user.save();
         }
 
+        logger.info(`User logged in successfully: Email: ${u_email}`);
         sendToken(user, 201, res, { message: 'Login successful' });
     } catch (error) {
-        console.error('Error during login:', error); // Hata ayıklamak için log ekleyin
+        logger.error(`Error during login: ${error.message}`);
         res.status(500).json({ success: false, error: 'Internal server error.' });
     }
 });
@@ -83,6 +92,7 @@ const login2FA = catchAsyncError(async (req, res) => {
     const { u_email, u_password } = req.body;
 
     if (!u_email || !u_password) {
+        logger.warn(`2FA Login attempt failed: Missing fields - Email: ${u_email}`);
         return res.status(400).json({ success: false, error: 'Please enter the email and password fields.' });
     }
 
@@ -90,6 +100,7 @@ const login2FA = catchAsyncError(async (req, res) => {
         const user = await User.findOne({ u_email });
 
         if (!user) {
+            logger.warn(`2FA Login attempt failed: Invalid email - Email: ${u_email}`);
             return res.status(400).json({ success: false, error: 'Invalid email or password.' });
         }
 
@@ -98,8 +109,10 @@ const login2FA = catchAsyncError(async (req, res) => {
             user.loginAttempts += 1;
             if (user.loginAttempts >= 5) {
                 user.lockUntil = Date.now() + 15 * 60 * 1000; // 15 dakika kilitle
+                logger.warn(`Account locked due to multiple failed 2FA login attempts - Email: ${u_email}`);
             }
             await user.save();
+            logger.warn(`2FA Login attempt failed: Incorrect password - Email: ${u_email}`);
             return res.status(400).json({ success: false, error: 'Invalid email or password.' });
         }
 
@@ -116,9 +129,10 @@ const login2FA = catchAsyncError(async (req, res) => {
             text: message,
         });
 
+        logger.info(`2FA code sent to user: Email: ${u_email}`);
         res.status(200).json({ success: true, message: '2FA code sent to your email.' });
     } catch (error) {
-        console.error('Error during login:', error);
+        logger.error(`Error during 2FA login: ${error.message}`);
         res.status(500).json({ success: false, error: 'Internal server error.' });
     }
 });
@@ -127,6 +141,7 @@ const verify2FA = catchAsyncError(async (req, res) => {
     const { u_email, twoFACode } = req.body;
 
     if (!u_email || !twoFACode) {
+        logger.warn(`2FA verification attempt failed: Missing fields - Email: ${u_email}`);
         return res.status(400).json({ success: false, error: 'Please enter the email and 2FA code fields.' });
     }
 
@@ -135,6 +150,7 @@ const verify2FA = catchAsyncError(async (req, res) => {
 
         console.log(user);
         if (!user || user.twoFACode !== twoFACode || user.twoFAExpire < Date.now()) {
+            logger.warn(`2FA verification failed: Invalid or expired code - Email: ${u_email}`);
             return res.status(400).json({ success: false, error: 'Invalid or expired 2FA code.' });
         }
 
@@ -148,9 +164,10 @@ const verify2FA = catchAsyncError(async (req, res) => {
             await user.save();
         }
 
+        logger.info(`User verified 2FA successfully: Email: ${u_email}`);
         sendToken(user, 200, res, { message: 'Login successful' });
     } catch (error) {
-        console.error('Error during 2FA verification:', error);
+        logger.error(`Error during 2FA verification: ${error.message}`);
         res.status(500).json({ success: false, error: 'Internal server error.' });
     }
 });
