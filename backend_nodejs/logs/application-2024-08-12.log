@@ -1,0 +1,24 @@
+2024-08-12T18:18:35.320Z info: POST /auth/login - ::1
+2024-08-12T18:18:35.807Z info: User logged in successfully: Email: dlsd@gmail.com
+2024-08-12T18:18:35.866Z info: GET /user/total - ::1
+2024-08-12T18:18:36.076Z info: GET /movement/total - ::1
+2024-08-12T18:18:36.276Z info: GET /program/total - ::1
+2024-08-12T18:18:36.487Z info: GET /userProgram/totalAll - ::1
+2024-08-12T18:18:36.672Z info: GET /set/get - ::1
+2024-08-12T18:18:36.862Z info: GET /program/byId/66aa7ae874caa94a41afcd46 - ::1
+2024-08-12T18:18:36.864Z info: GET /program/byId/66aa7abf74caa94a41afcd3a - ::1
+2024-08-12T18:19:20.655Z info: GET /user/total - ::1
+2024-08-12T18:19:21.116Z info: GET /movement/total - ::1
+2024-08-12T18:19:21.301Z info: GET /program/total - ::1
+2024-08-12T18:19:21.484Z info: GET /userProgram/totalAll - ::1
+2024-08-12T18:19:21.668Z info: GET /set/get - ::1
+2024-08-12T18:19:21.853Z info: GET /program/byId/66aa7ae874caa94a41afcd46 - ::1
+2024-08-12T18:19:21.857Z info: GET /program/byId/66aa7abf74caa94a41afcd3a - ::1
+2024-08-12T18:20:09.254Z info: GET /user/total - ::1
+2024-08-12T18:20:09.441Z info: GET /movement/total - ::1
+2024-08-12T18:20:09.643Z info: GET /program/total - ::1
+2024-08-12T18:20:09.835Z info: GET /userProgram/totalAll - ::1
+2024-08-12T18:20:10.019Z info: GET /set/get - ::1
+2024-08-12T18:20:10.202Z info: GET /program/byId/66aa7ae874caa94a41afcd46 - ::1
+2024-08-12T18:20:10.204Z info: GET /program/byId/66aa7abf74caa94a41afcd3a - ::1
+2024-08-12T18:28:54.148Z info: GET /logs - ::1

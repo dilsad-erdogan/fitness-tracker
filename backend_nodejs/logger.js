@@ -25,7 +25,6 @@ const logger = createLogger({
                 useUnifiedTopology: true
             },
             collection: 'loggings', // Logların saklanacağı koleksiyon ismi
-            level: 'info', // Loglama seviyesi
             capped: true, // Koleksiyonun belirli bir boyutta sınırlandırılması
             cappedMax: 1000000, // 1 milyon kayıt saklanacak
         })
