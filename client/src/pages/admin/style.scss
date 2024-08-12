@@ -35,5 +35,52 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+
+        .settings{
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+            
+            .panel{
+                padding: 20px;
+                box-shadow: 2px 4px 10px 1px var(--lightDark);
+                border-radius: 20px;
+                width: 500px;
+
+                .title{
+                    font-weight: bold;
+                    font-size: 20px;
+                    color: var(--dark);
+                    margin-top: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 20px;
+                }
+
+                .userInfoForm{
+                   .formGroup {
+                        display: flex;
+                        flex-direction: column;
+                        margin-bottom: 15px;
+            
+                        label {
+                            margin-bottom: 5px;
+                            color: var(--dark);
+                            font-weight: 500;
+                        }
+            
+                        input, select {
+                            padding: 10px;
+                            border-radius: 5px;
+                            border: 1px solid var(--lightDark);
+                            font-size: 16px;
+                            color: var(--dark);
+                            transition: border 0.3s ease;
+                        }
+                    } 
+                }
+            }
+        }
     }
 }

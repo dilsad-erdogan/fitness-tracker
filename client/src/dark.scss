@@ -351,6 +351,30 @@
                 color: var(--light);
             }
         }
+
+        .settings{
+            .panel{
+                box-shadow: 2px 4px 10px 1px var(--lightDark);
+                background-color: var(--lightDark);
+
+                .title{
+                    color: var(--light);
+                }
+
+                .userInfoForm{
+                   .formGroup {
+                        label {
+                            color: var(--light);
+                        }
+            
+                        input, select {
+                            border: 1px solid var(--light);
+                            color: var(--light);
+                        }
+                    } 
+                }
+            }
+        }
     }
     
     input{
