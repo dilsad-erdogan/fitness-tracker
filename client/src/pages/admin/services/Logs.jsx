@@ -1,3 +1,4 @@
+import '../style.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../../../components/sidebar/SidebarinAdmin';
