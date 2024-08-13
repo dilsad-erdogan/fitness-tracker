@@ -95,3 +95,13 @@
 2024-08-12T20:18:50.652Z info: GET /set/get - ::1
 2024-08-12T20:18:50.839Z info: GET /program/byId/66aa7ae874caa94a41afcd46 - ::1
 2024-08-12T20:18:50.841Z info: GET /program/byId/66aa7abf74caa94a41afcd3a - ::1
+2024-08-12T20:22:35.123Z info: GET /user/total - ::1
+2024-08-12T20:22:35.307Z info: GET /movement/total - ::1
+2024-08-12T20:22:35.493Z info: GET /program/total - ::1
+2024-08-12T20:22:35.679Z info: GET /userProgram/totalAll - ::1
+2024-08-12T20:22:35.867Z info: GET /set/get - ::1
+2024-08-12T20:22:36.056Z info: GET /program/byId/66aa7ae874caa94a41afcd46 - ::1
+2024-08-12T20:22:36.058Z info: GET /program/byId/66aa7abf74caa94a41afcd3a - ::1
+2024-08-12T20:22:39.122Z info: GET /user/get - ::1
+2024-08-12T20:22:39.307Z info: GET /userRole/byId/66536ca7cc843b0a8ebfb8d1 - ::1
+2024-08-12T20:22:39.310Z info: GET /userRole/byId/6655bdfb4b1d1a8b2cb12919 - ::1

@@ -53,5 +53,44 @@
                 }
             }
         }
+
+        .title{
+            font-weight: bold;
+            font-size: 20px;
+            color: var(--dark);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .plans{
+            display: flex;
+            gap: 20px;
+    
+            .plan{
+                margin-top: 10px;
+                color: var(--dark);
+                padding: 20px;
+                border-radius: 20px;
+                box-shadow: 2px 4px 10px 1px var(--veryLight);
+                background-color: var(--veryLight);
+    
+                .title{
+                    font-weight: bold;
+                    font-size: 15px;
+                    color: var(--dark);
+                    margin-top: 10px;
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                }
+    
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }              
+            }
+        }
     }
 }

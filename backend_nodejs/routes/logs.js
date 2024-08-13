@@ -9,8 +9,7 @@ const Log = mongoose.model('loggings', new mongoose.Schema({}, { strict: false }
 // GET /logs
 router.get('/', async (req, res) => {
     try {
-        const logs = await Log.find().sort({ timestamp: -1 }).limit(50); // Son 100 logu çek
-        res.json(logs);
+        await Log.find().sort({ timestamp: -1 }).limit(50);
     } catch (error) {
         res.status(500).send('Sunucu hatası');
     }

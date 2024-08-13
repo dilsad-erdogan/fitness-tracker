@@ -99,7 +99,7 @@ const UserPanel = () => {
     } else {
       console.error("User not found in localStorage");
     }
-  }, [localStorage.getItem('user')]);
+  }, []);
   
   return (
     <div className='userPanel'>
