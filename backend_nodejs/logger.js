@@ -14,11 +14,6 @@ const logger = createLogger({
     ),
     transports: [
         new transports.Console(),
-        new transports.DailyRotateFile({
-            filename: 'logs/application-%DATE%.log',
-            datePattern: 'YYYY-MM-DD',
-            maxFiles: '14d'
-        }),
         new transports.MongoDB({
             db: process.env.MONGODB_URI, // MongoDB bağlantı URI'si buraya geliyor
             options: {
