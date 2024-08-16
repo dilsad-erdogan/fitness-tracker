@@ -375,6 +375,37 @@
                 }
             }
         }
+
+        .goals{
+            .true{
+                box-shadow: 2px 4px 10px 1px var(--veryLight);
+                
+                .left{
+                    color: var(--veryLight);
+                }
+
+                .right{
+                    .title{
+                        color: var(--veryLight);
+                    }
+                }
+            }
+
+            .false{
+                box-shadow: 2px 4px 10px 1px var(--veryLight);
+                background-color: var(--veryLight);
+
+                .left{
+                    color: var(--dark);
+                }
+
+                .right{
+                    .title{
+                        color: var(--dark);
+                    }
+                }
+            }
+        }
     }
     
     input{

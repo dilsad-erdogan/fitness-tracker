@@ -53,7 +53,7 @@ const Profile = () => {
   };
 
   return (
-    <div className='adminPanel'>
+    <div className='userPanel'>
       <Sidebar></Sidebar>
 
       <div className='homeContainer'>
