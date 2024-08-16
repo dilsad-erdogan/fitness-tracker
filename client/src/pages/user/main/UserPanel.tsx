@@ -27,79 +27,40 @@ const UserPanel = () => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
-  
     if (storedUser) {
-      let id: string;
-      try {
-        id = JSON.parse(storedUser)._id;
-        setUserid(id);
-        setName(JSON.parse(storedUser).u_name);
-        setEmail(JSON.parse(storedUser).u_email);
-      } catch (error) {
-        console.error("Failed to parse user from localStorage:", error);
-        return;
-      }
+      let id = JSON.parse(storedUser)._id;
+      setUserid(id);
+      setName(JSON.parse(storedUser).u_name);
+      setEmail(JSON.parse(storedUser).u_email);
   
-      const fetchUser = async() => {
+      const fetchData = async() => {
         try {
-          const response = await userProgramServices.total(id);
-          setUser(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      const fetchUProgram = async() => {
-        try{
-          const response = await userProgramServices.get(id);
-          setProgram(response.data);
-        } catch (error){
-          console.error(error);
-        }
-      };
-
-      const fetchCalorie = async() => {
-        try{
-          const response = await wServices.byId(id);
-          setAllcalorie(response.data);
+          const [userResponse, programResponse, calorieResponse, hwResponse] = await Promise.all([
+            userProgramServices.total(id),
+            userProgramServices.get(id),
+            wServices.byId(id),
+            hwServices.byId(id),
+          ]);
+  
+          setUser(userResponse.data);
+          setProgram(programResponse.data);
+          setAllcalorie(calorieResponse.data);
+          setWeight(hwResponse.data.weight);
+          setHeight(hwResponse.data.height);
+  
           const currentDayIndex = new Date().getDay();
           const dayMap = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-          
-          const currentDay = dayMap[currentDayIndex];
-
-          setCalorie(response.data[currentDay]);
-        } catch(error) {
-          console.error(error);
-        }
-      };
-
-      const fetchWeight = async() => {
-        try{
-          const response = await hwServices.byId(id);
-          setWeight(response.data.weight);
-        } catch(error) {
-          console.error(error);
+          setCalorie(calorieResponse.data[dayMap[currentDayIndex]]);
+        } catch (error) {
+          console.error("Failed to fetch data:", error);
         }
       };
   
-      const fetchHeight = async() => {
-        try{
-          const response = await hwServices.byId(id);
-          setHeight(response.data.height);
-        } catch(error) {
-          console.error(error);
-        }
-      };
-
-      fetchUser();
-      fetchUProgram();
-      fetchCalorie();
-      fetchWeight();
-      fetchHeight();
+      fetchData();
     } else {
       console.error("User not found in localStorage");
     }
-  }, []);
+  }, []);  
   
   return (
     <div className='userPanel'>
