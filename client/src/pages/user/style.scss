@@ -1,167 +1,230 @@
 .userPanel{
-    display: flex;
-    overflow: hidden;
+  display: flex;
+  overflow: hidden;
 
-    .homeContainer{
-      flex: 6;
-      background-color: var(--veryLight);
+  .homeContainer{
+    flex: 6;
+    background-color: var(--veryLight);
 
-        .container{
-            display: flex;
+    .container{
+      display: flex;
 
-            .leftContainer{
-                flex: 6;
+      .leftContainer{
+        flex: 6;
 
-                .diaryMessage{
-                    padding: 20px;
-                }
-
-                .widgets{
-                    display: flex;
-                    padding: 20px;
-                    gap: 20px;
-                }
-
-                .blocks{
-                    display: flex;
-
-                    .todoList{
-                        flex: 4;
-                        padding: 20px;
-                    }
-
-                    .dailyPlan{
-                        flex: 6;
-                        padding: 20px;
-                    }
-                }
-            }
-
-            .rightContainer{
-                flex: 2;
-
-                .weather{
-                    padding: 10px;
-                }
-
-                .profile{
-                    padding: 10px;
-                }
-
-                .weeklySports{
-                    padding: 10px;
-                }
-            }
+        .diaryMessage{
+          padding: 20px;
         }
 
+        .widgets{
+          display: flex;
+          padding: 20px;
+          gap: 20px;
+        }
+
+        .blocks{
+          display: flex;
+
+          .todoList{
+            flex: 4;
+            padding: 20px;
+          }
+
+          .dailyPlan{
+            flex: 6;
+            padding: 20px;
+          }
+        }
+      }
+
+      .rightContainer{
+        flex: 2;
+
+        .weather{
+          padding: 10px;
+        }
+
+        .profile{
+          padding: 10px;
+        }
+
+        .weeklySports{
+          padding: 10px;
+        }
+      }
+    }
+
+    .title{
+      font-weight: bold;
+      font-size: 20px;
+      color: var(--dark);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .plans{
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    
+      .plan{
+        justify-content: space-between;
+        margin-top: 10px;
+        color: var(--dark);
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 2px 4px 10px 1px var(--light);
+        background-color: var(--light);
+    
         .title{
+          font-weight: bold;
+          font-size: 15px;
+          color: var(--dark);
+          margin-top: 10px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+        }
+    
+        .content {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          color: var(--dark);
+
+          .movement{
+            margin-bottom: 10px;
+            border: 1px solid var(--dark);
+            border-radius: 20px;
+            padding: 10px;
+
+            .title{
+              font-weight: bold;
+              font-size: 15px;
+              color: var(--dark);
+            }
+          }
+        }              
+      }
+    }
+
+    .goals {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+          
+      .goal {
+        padding: 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 20px;
+            
+        .deleted{
+          margin-right: auto;
+        }
+            
+        .left {
+          margin-right: 5%;
+        }
+            
+        .right {
+          display: flex;
+              
+          .title {
             font-weight: bold;
             font-size: 20px;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
+        
+      .true {
+        box-shadow: 2px 4px 10px 1px var(--dark);
+
+        .deleted{
+          color: var(--dark);
+        }
+            
+        .left {
+          color: var(--dark);
+        }
+        
+        .right {
+          .title {
             color: var(--dark);
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
+          }
         }
-
-        .plans{
-            display: flex;
-            gap: 20px;
-    
-            .plan{
-                margin-top: 10px;
-                color: var(--dark);
-                padding: 20px;
-                border-radius: 20px;
-                box-shadow: 2px 4px 10px 1px var(--veryLight);
-                background-color: var(--veryLight);
-    
-                .title{
-                    font-weight: bold;
-                    font-size: 15px;
-                    color: var(--dark);
-                    margin-top: 10px;
-                    display: flex;
-                    gap: 10px;
-                    align-items: center;
-                }
-    
-                .content {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                }              
-            }
+      }
+        
+      .false {
+        box-shadow: 2px 4px 10px 1px var(--dark);
+        background-color: var(--dark);
+            
+        .deleted{
+          color: var(--veryLight);
         }
-
-        .goals {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 20px;
-          padding: 20px;
+            
+        .left {
+          color: var(--veryLight);
+        }
+        
+        .right {
+          .title {
+            color: var(--veryLight);
+          }
+        }
+      }
+    }   
+        
+    .settings{
+      display: flex;
+      justify-content: center;
+      margin-top: 100px;
           
-          .goal {
-            padding: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: 20px;
-            
-            .deleted{
-              margin-right: auto;
-            }
-            
-            .left {
-              margin-right: 5%;
-            }
-            
-            .right {
-              display: flex;
-              
-              .title {
-                font-weight: bold;
-                font-size: 20px;
-                display: flex;
-                align-items: center;
-              }
-            }
-          }
-        
-          .true {
-            box-shadow: 2px 4px 10px 1px var(--dark);
+      .panel{
+        padding: 20px;
+        box-shadow: 2px 4px 10px 1px var(--lightDark);
+        border-radius: 20px;
+        width: 500px;
 
-            .deleted{
+        .title{
+          font-weight: bold;
+          font-size: 20px;
+          color: var(--dark);
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+
+        .userInfoForm{
+          .formGroup {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+          
+            label {
+              margin-bottom: 5px;
               color: var(--dark);
+              font-weight: 500;
             }
-            
-            .left {
+          
+            input, select {
+              padding: 10px;
+              border-radius: 5px;
+              border: 1px solid var(--lightDark);
+              font-size: 16px;
               color: var(--dark);
+              transition: border 0.3s ease;
             }
-        
-            .right {
-              .title {
-                color: var(--dark);
-              }
-            }
-          }
-        
-          .false {
-            box-shadow: 2px 4px 10px 1px var(--dark);
-            background-color: var(--dark);
-            
-            .deleted{
-              color: var(--veryLight);
-            }
-            
-            .left {
-              color: var(--veryLight);
-            }
-        
-            .right {
-              .title {
-                color: var(--veryLight);
-              }
-            }
-          }
-        }          
+          } 
+        }
+      }
     }
+  }
 }

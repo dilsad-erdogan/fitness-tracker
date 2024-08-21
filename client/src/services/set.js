@@ -41,11 +41,22 @@ const byId = async (id) => {
     }
 };
 
+const getMovements = async (id) => {
+    try{
+        const response = await axios.get(`${S}/getMovement/${id}`);
+        return response.data;
+    } catch (error){
+        console.error('Error fetching set:', error);
+        throw error;
+    }
+};
+
 const sServices = {
     get,
     add,
     deleted,
-    byId
+    byId,
+    getMovements
 };
 
 export default sServices;

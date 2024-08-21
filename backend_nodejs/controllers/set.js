@@ -1,5 +1,6 @@
 const Set = require('../models/Set');
 const Program = require('../models/Program');
+const UProgram = require('../models/UserProgram');
 const Movement = require('../models/Movement');
 
 async function getSet (req, res) {
@@ -22,9 +23,10 @@ async function addSet (req, res) {
         const { s_pid, s_mid } = req.body;
 
         const p_id = await Program.findById(s_pid);
+        const up_id = await UProgram.findById(s_pid);
         const m_id = await Movement.findById(s_mid);
 
-        if (!p_id || !p_id.is_active) {
+        if (!p_id || !p_id.is_active) {} else if(!up_id || !up_id.is_active) {
             return res.status(400).json({ success: false, message: 'Program not found or inactive!' });
         } else if (!m_id || !m_id.is_active) {
             return res.status(400).json({ success: false, message: 'Movement not found or inactive!' });
@@ -82,9 +84,26 @@ async function getSetById (req, res) {
     }
 }
 
+async function getAllMovement (req, res) {
+    try{
+        const p_id = req.params.id;
+        const sets = await Set.find({ s_pid: p_id, is_active: true });
+
+        if(sets) {
+            res.status(200).json({ success: true, data: sets })
+        } else {
+            res.status(404).json({ success: false, message: 'Set not found!' });
+        }
+    } catch(error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal server error!' });
+    }
+}
+
 module.exports = {
     getSet,
     addSet,
     deleteSet,
-    getSetById
+    getSetById,
+    getAllMovement
 }
