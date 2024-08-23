@@ -1,6 +1,0 @@
-# Backend specific ignores
-node_modules/
-dist/
-
-# Environment variables
-.env
