@@ -37,14 +37,23 @@ const Workout = () => {
 
   const handleAdd = async () => {
     setIsAddModalOpen(true);
-    fetchUProgram();
+    fetchUProgram(id);
   };
 
-  const handleAddMovement = async (id) => {
+  const handleAddMovement = async (userid) => {
     setIsAddMovementModalOpen(true);
-    fetchUProgram();
-    setProgramId(id);
-  }
+    fetchUProgram(id);
+    setProgramId(userid);
+  };
+
+  const deleteMovement = async (userid) => {
+    try{
+      await userProgramServices.deleted(userid);
+      fetchUProgram(id);
+    } catch(error){
+      console.error(error);
+    }
+  };
 
   const fetchUProgram = async(userId) => {
     try {
@@ -109,6 +118,7 @@ const Workout = () => {
                 </div>
 
                 <div className="flex justify-end mt-4">
+                  <button type="button" className="mr-2 inline-flex items-center gap-x-2 text-sm font-semibold text-[#F7E7DC] bg-[#405D72] rounded-lg px-4 py-2 dark:text-[#405D72] dark:bg-[#F7E7DC] focus:outline-none" onClick={() => deleteMovement(program._id)}>Delete Program</button>
                   <button type="button" className="inline-flex items-center gap-x-2 text-sm font-semibold text-[#F7E7DC] bg-[#405D72] rounded-lg px-4 py-2 dark:text-[#405D72] dark:bg-[#F7E7DC] focus:outline-none" onClick={() => handleAddMovement(program._id)}>Add Movement</button>
                 </div>
               </div>

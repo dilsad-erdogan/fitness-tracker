@@ -90,15 +90,20 @@ const AdminPanel = () => {
       try {
         const responses = await Promise.all(
           ids.map(async (id) => {
-            return await pServices.byId(id);
+            try {
+              return await pServices.byId(id);
+            } catch (error) {
+              return await upServices.byId(id);
+            }
           })
         );
-
+    
         setPrograms(responses);
       } catch (error) {
         console.error('Error fetching programs:', error);
       }
     };
+    
 
     const loadData = async () => {
       await fetchUser();

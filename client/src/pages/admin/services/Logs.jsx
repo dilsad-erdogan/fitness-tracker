@@ -18,7 +18,7 @@ const Logs = () => {
     };
 
     fetchLogs();
-  }, []);
+  });
 
   return (
     <div className='adminPanel'>
