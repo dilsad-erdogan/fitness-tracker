@@ -1,3 +1,6 @@
+# Backend specific ignores
 node_modules/
-middleware/
+dist/
+
+# Environment variables
 .env
