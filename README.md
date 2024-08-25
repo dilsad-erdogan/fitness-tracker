@@ -9,8 +9,8 @@
 | ----------------- | ------------------------------------------------------------------ |
 | sample color | ![#405D72](https://via.placeholder.com/10/0a192f?text=+) #405D72 |
 | sample color | ![#758694](https://via.placeholder.com/10/f8f8f8?text=+) #758694 |
-| sample color | ![#F7E7DC](https://via.placeholder.com/10/00b48a?text=+) #F7E7DC |
-| sample color | ![#FFF8F3](https://via.placeholder.com/10/00b48a?text=+) #FFF8F3 |
+| sample color | ![#f7e7dc](https://via.placeholder.com/10/00b48a?text=+) #F7E7DC |
+| sample color | ![#fff8f3](https://via.placeholder.com/10/00b48a?text=+) #FFF8F3 |
 
 ## Screenshots
 - Login Page 
