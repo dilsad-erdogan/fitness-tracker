@@ -79,6 +79,6 @@ To run this project you will need to add the .env file in the 'backend_nodejs' f
 `FROM_EMAIL`
 
 # Support and Feedback
-If you want any question or give any feedback, please contact us at:
+If you want any question or give any feedback, please contact me at:
 
 [@Dilşad Rukiye Erdoğan](https://www.linkedin.com/in/dilşad-erdoğan-089547221/)
